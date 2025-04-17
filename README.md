@@ -29,6 +29,16 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## 폴더구조
+
+FSD를 간소화 시킨 폴더 구조 사용
+
+- **규칙**
+  1.  pages, features, shared 세 가지 레이어를 사용
+  2.  next.js 특성상 pages는 app으로 대체
+  3.  하위 레이어에서 상위 레이어를 import 금지
+  4.  동일 레이어끼리는 import 가능
+
 ## 기본 세팅
 
 - prettier
