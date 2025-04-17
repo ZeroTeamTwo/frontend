@@ -13,6 +13,15 @@
 }
 
 @theme {
+	--breakpoint-*: initial;
+	--breakpoint-desktop: 960px;
+
+	--spacing-max: 1920px;
+	--spacing-desktop: 960px;
+}
+
+@theme {
+	/* 색상 */
 	--color-*: initial;
 	--color-neutral-99: #f7f7f8;
 	--color-neutral-98: #f4f4f5;
