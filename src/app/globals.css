@@ -18,6 +18,11 @@
 
 	--spacing-max: 1920px;
 	--spacing-desktop: 960px;
+
+	--font-weight-*: initial;
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+	--font-weight-bold: 700;
 }
 
 @theme {
