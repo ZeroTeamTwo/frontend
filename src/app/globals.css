@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import './typography.css';
+
 :root {
 	--background: #fff;
 	--foreground: #000;
@@ -36,15 +37,13 @@
 
 	--color-label-normal: #171719;
 	--color-label-strong: #000000;
-	--color-label-neutral: #000;
+	--color-label-neutral: #000000;
 	--color-label-alternative: #000;
 	--color-label-assistive: #000;
 	--color-label-disable: #fff;
 
-	--color-background-normal-normal: #ffffff;
-	--color-background-normal-alternative: #f7f7f8;
-	--color-background-elevated-normal: #ffffff;
-	--color-background-elevated-alternative: #f7f7f8;
+	--color-bg-white: #ffffff;
+	--color-bg-gray: #f7f7f8;
 
 	--color-interaction-inactive: #989ba2;
 	--color-interaction-disable: #f4f4f5;
@@ -63,6 +62,8 @@
 
 	--color-static-white: #ffffff;
 	--color-static-black: #000000;
+	--color-white: #ffffff;
+	--color-black: #000000;
 
 	--color-material-dimmer: #868687;
 
@@ -80,4 +81,3 @@ body {
 	color: var(--foreground);
 	font-family: Arial, Helvetica, sans-serif;
 }
-
