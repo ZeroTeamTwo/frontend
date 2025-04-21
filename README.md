@@ -1,33 +1,16 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 그래, 이 픽
 
-## Getting Started
-
-First, run the development server:
+로컬 실행
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+스토리북 실행
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run storybook
+```
 
 ## 폴더구조
 
@@ -38,10 +21,57 @@ FSD를 간소화 시킨 폴더 구조 사용
   2.  next.js 특성상 pages는 app으로 대체
   3.  하위 레이어에서 상위 레이어를 import 금지
   4.  동일 레이어끼리는 import 가능
+  5.  지엽적인 상수나 타입은 컴퍼넌트 내부, 피쳐 혹은 공용 상수나 타입은 hooks 및 types 폴더에서 관리
 
-## 기본 세팅
+📦src
+┣ 📂app / # next.js 페이지 컴퍼넌트
+┣ 📂features / # feature 단위 컴퍼넌트  
+ ┃ ┗ 📂layout / # feature 명
+| ┃ ┣ 📂const / # 상수
+| ┃ ┣ 📂hooks / # 훅
+| ┃ ┣ 📂types / # 타입
+| ┃ ┣ 📜layout.css / # 관련 css
+┃ ┃ ┗ 📜Header.tsx / # 관련 컴퍼넌트
+┣ 📂shared / # shared 레이어 파일
+┃ ┗ 📂components / # 컴퍼넌트
+┃ ┃ ┣ 📜SolidBtn.stories.ts / # 공용 컴퍼넌트의 경우 스토리 작성
+┃ ┃ ┗ 📜SolidBtn.tsx
+┃ ┣ 📂const / # 상수
+┃ ┣ 📂hooks / # 훅
+┃ ┣ 📂styles / # css
+┣ ┗ 📂types / # 타입
+┣ 📂stories / # 스토리 관련 mdx 파일
+┃ ┗ 📜index.mdx
 
-- prettier
+## 컨벤션
+
+- **네이밍 컨벤션**
+
+| 대상                           | 명명법                           | 예시                                                 |
+| ------------------------------ | -------------------------------- | ---------------------------------------------------- |
+| 폴더                           | 케밥 케이스                      | user-profile                                         |
+| tsx 컴포넌트                   | 파스칼 케이스 , index.tsx는 예외 | Header.tsx                                           |
+| 파일                           | 카멜 케이스                      | useLogin.ts                                          |
+| 변수 및 함수                   | 카멜 케이스                      | userProfile                                          |
+| boolean타입의 변수 및 반환함수 | is, has, can으로 시작            | isLoading                                            |
+| 상수                           | 스네이크 케이스                  | USER_PROFILE                                         |
+| 타입                           | 파스칼 케이스                    | ProfileProps                                         |
+| 배열 변수                      | 접미사로 List                    | const [userList, setUserList] = useState<User[]>([]) |
+| 이벤트핸들러                   | handle 접두사                    | const handleLogin=()=>{}                             |
+| 번역시 어렵거나 복잡한 용어    | 한글                             | 발의법안                                             |
+
+- **축약어**
+  | 원어 | 축약어 | 원어 | 축약어 |
+  |--------------|--------|----------------|--------|
+  | button | btn | color | clr |
+  | image | img | property | prop |
+  | input | inp | parameter | param |
+  | navigation | nav | configuration | config |
+  | section | sec | information | info |
+  | background | bg | message | msg |
+  | number | num | temporary | tmp |
+
+- **prettier**
 
   ```json
   {
