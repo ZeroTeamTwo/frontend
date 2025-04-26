@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${pretendard.className} antialiased flex flex-col justify-center max-w-max w-full mx-auto`}>{children}</body>
+			<body className={`${pretendard.className} antialiased flex flex-col items-center w-full  min-h-screen mx-auto`}>{children}</body>
 		</html>
 	);
 }

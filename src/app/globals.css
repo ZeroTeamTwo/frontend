@@ -17,7 +17,7 @@
 	/* 반응형 */
 	--breakpoint-*: initial;
 	--breakpoint-desktop: 960px;
-	--spacing-max: 1920px;
+	--spacing-maxw: 1200px;
 	--spacing-desktop: 960px;
 
 	/* 폰트 사이 */
@@ -37,10 +37,10 @@
 
 	--color-label-normal: #171719;
 	--color-label-strong: #000000;
-	--color-label-neutral: #000000;
-	--color-label-alternative: #000;
-	--color-label-assistive: #000;
-	--color-label-disable: #fff;
+	--color-label-neutral: #434447;
+	--color-label-alternative: #858588;
+	--color-label-assistive: #c7c8c9;
+	--color-label-disable: #dfdfe0;
 
 	--color-bg-white: #ffffff;
 	--color-bg-gray: #f7f7f8;
@@ -59,6 +59,20 @@
 	--color-status-positive: #00bf40;
 	--color-status-negative: #ff9200;
 	--color-status-warning: #ff0a0a;
+
+	--color-accent-bg-violet: #6541f2;
+	--color-accent-bg-green: #43e5b2;
+	--color-accent-bg-red: #ff0a0a;
+	--color-accent-bg-orange: #ff9200;
+	--color-accent-bg-green: #00bf40;
+	--color-accent-bg-blue: #0066ff;
+
+	--color-accent-fg-violet: #4f29e5;
+	--color-accent-fg-green: #17bf89;
+	--color-accent-fg-red: #b20000;
+	--color-accent-fg-orange: #a35d00;
+	--color-accent-fg-green: #007828;
+	--color-accent-fg-blue: #0041a3;
 
 	--color-static-white: #ffffff;
 	--color-static-black: #000000;

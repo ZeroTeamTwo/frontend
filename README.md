@@ -55,8 +55,9 @@ FSD를 간소화 시킨 폴더 구조 사용
 | tsx 컴포넌트                   | 파스칼 케이스 , index.tsx는 예외 | Header.tsx                                           |
 | 파일                           | 카멜 케이스                      | useLogin.ts                                          |
 | 변수 및 함수                   | 카멜 케이스                      | userProfile                                          |
+| 매개변수                       | 스네이크 케이스                  | user_num                                             |
 | boolean타입의 변수 및 반환함수 | is, has, can으로 시작            | isLoading                                            |
-| 상수                           | 스네이크 케이스                  | USER_PROFILE                                         |
+| 상수                           | 스크리밍 스네이크 케이스         | USER_PROFILE                                         |
 | 타입                           | 파스칼 케이스                    | ProfileProps                                         |
 | 배열 변수                      | 접미사로 List                    | const [userList, setUserList] = useState<User[]>([]) |
 | 이벤트핸들러                   | handle 접두사                    | const handleLogin=()=>{}                             |
@@ -72,6 +73,7 @@ FSD를 간소화 시킨 폴더 구조 사용
   | section | sec | information | info |
   | background | bg | message | msg |
   | number | num | temporary | tmp |
+  | foreground | fg | | |
 
 - **prettier**
 
