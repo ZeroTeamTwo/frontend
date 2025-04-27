@@ -14,7 +14,6 @@ const ContentHeader = ({ title, link, keyword_list, isLoginRequired }: ContentHe
 	return (
 		<div className="flex justify-center  desktop:justify-between items-center w-full h-[56px] desktop:h-[38px] desktop:gap-[10px] p-0">
 			<h2 className="flex flex-col items-center desktop:flex-row typo-heading1 desktop:typo-title2 font-bold gap-2 flex-wrap text-center">
-				{/* <h2 className="typo-title2 font-bold flex items-center gap-2 flex-wrap"> */}
 				{title}
 				{keyword_list && (
 					<span className="flex gap-2 text-primary-main-normal">

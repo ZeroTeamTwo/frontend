@@ -3,15 +3,24 @@ import { COMMITTEES } from '../const/committee';
 import Image from 'next/image';
 
 export type IssueCardProps = {
-	title: string; // 제목
-	committee: string; // 위원회
-	name: string; // 발의자
-	date: string; // 날짜
-	state: string; // 상태
-	keyword_list: string[]; // 키워드들
-	view_num: number; // 조회수
-	bookmark_num: number; // 북마크 수
-	comment_num: number; // 댓글 수
+	/** 카드 제목 */
+	title: string;
+	/** 소속 위원회 */
+	committee: string;
+	/** 발의자 이름 */
+	name: string;
+	/** 발의 날짜 (YYYY.MM.DD 형태) */
+	date: string;
+	/** 현재 상태 */
+	state: string;
+	/** 관련 키워드 목록 */
+	keyword_list: string[];
+	/** 조회수 */
+	view_num: number;
+	/** 북마크 수 */
+	bookmark_num: number;
+	/** 댓글 수 */
+	comment_num: number;
 };
 
 const IssueCard = ({ title, committee, name, date, state, view_num, bookmark_num, comment_num }: IssueCardProps) => {
