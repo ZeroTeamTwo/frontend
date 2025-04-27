@@ -1,13 +1,15 @@
-import { CLIENT_NAVI_LIST } from '@/shared/const/url';
+import { CLIENT_NAVI_PATH } from '@/shared/const/url';
 import Link from 'next/link';
 import React from 'react';
 
 const Navibar = () => {
 	return (
 		<div className="flex justify-between items-center gap-[70px]">
-			{CLIENT_NAVI_LIST.filter((item) => item.name !== '홈').map((item) => (
-				<NaviBtn key={item.name} title={item.name} link={item.path} />
-			))}
+			{Object.entries(CLIENT_NAVI_PATH)
+				.filter(([key]) => key !== 'home') // '홈' 제외
+				.map(([key, { name, path }]) => (
+					<NaviBtn key={key} title={name} link={path} />
+				))}
 		</div>
 	);
 };

@@ -1,6 +1,6 @@
-export const CLIENT_NAVI_LIST = [
-	{ name: '홈', path: '/' },
-	{ name: '정치 입문서', path: '미정' },
-	{ name: '법안 피드', path: '/bill' },
-	{ name: '정치인 피드', path: '/person' },
-];
+export const CLIENT_NAVI_PATH = {
+	home: { name: '홈', path: '/' },
+	guide: { name: '정치 입문서', path: '미정' },
+	bill: { name: '법안 피드', path: '/bill' },
+	person: { name: '정치인 피드', path: '/person' },
+} as const;
