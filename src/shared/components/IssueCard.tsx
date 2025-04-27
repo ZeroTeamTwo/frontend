@@ -34,13 +34,13 @@ const IssueCard = ({ title, committee, name, date, state, view_num, bookmark_num
 	];
 
 	return (
-		<article className="flex flex-col top-6 left-7 rounded-[12px] pt-5 pr-5 pb-4 pl-6 gap-3 bg-bg-white">
+		<article className="flex flex-col top-6 left-7 rounded-[12px] pt-5 pr-5 pb-4 pl-6 gap-2.5 desktop:gap-3 bg-bg-white">
 			<header className="flex justify-between gap-2 h-21">
 				<div className="flex flex-1 flex-col gap-1.5">
 					<h3 className="typo-heading1 font-bold text-ellipsis line-clamp-2" title={title}>
 						{title}
 					</h3>
-					<div className="flex typo-label1-normal text-label-alternative font-regular gap-2.5">
+					<div className="flex gap-2.5 typo-label2 desktop:typo-label1-normal text-label-alternative font-regular">
 						<div>{name}</div>
 						<div>{date}</div>
 					</div>
