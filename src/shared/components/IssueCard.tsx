@@ -3,15 +3,24 @@ import { COMMITTEES } from '../const/committee';
 import Image from 'next/image';
 
 export type IssueCardProps = {
-	title: string; // 제목
-	committee: string; // 위원회
-	name: string; // 발의자
-	date: string; // 날짜
-	state: string; // 상태
-	keyword_list: string[]; // 키워드들
-	view_num: number; // 조회수
-	bookmark_num: number; // 북마크 수
-	comment_num: number; // 댓글 수
+	/** 카드 제목 */
+	title: string;
+	/** 소속 위원회 */
+	committee: string;
+	/** 발의자 이름 */
+	name: string;
+	/** 발의 날짜 (YYYY.MM.DD 형태) */
+	date: string;
+	/** 현재 상태 */
+	state: string;
+	/** 관련 키워드 목록 */
+	keyword_list: string[];
+	/** 조회수 */
+	view_num: number;
+	/** 북마크 수 */
+	bookmark_num: number;
+	/** 댓글 수 */
+	comment_num: number;
 };
 
 const IssueCard = ({ title, committee, name, date, state, view_num, bookmark_num, comment_num }: IssueCardProps) => {
@@ -34,13 +43,13 @@ const IssueCard = ({ title, committee, name, date, state, view_num, bookmark_num
 	];
 
 	return (
-		<article className="flex flex-col top-6 left-7 rounded-[12px] pt-5 pr-5 pb-4 pl-6 gap-3 bg-bg-white">
+		<article className="flex flex-col top-6 left-7 rounded-[12px] pt-5 pr-5 pb-4 pl-6 gap-2.5 desktop:gap-3 bg-bg-white">
 			<header className="flex justify-between gap-2 h-21">
 				<div className="flex flex-1 flex-col gap-1.5">
 					<h3 className="typo-heading1 font-bold text-ellipsis line-clamp-2" title={title}>
 						{title}
 					</h3>
-					<div className="flex typo-label1-normal text-label-alternative font-regular gap-2.5">
+					<div className="flex gap-2.5 typo-label2 desktop:typo-label1-normal text-label-alternative font-regular">
 						<div>{name}</div>
 						<div>{date}</div>
 					</div>

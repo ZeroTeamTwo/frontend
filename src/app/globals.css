@@ -17,6 +17,8 @@
 	/* 반응형 */
 	--breakpoint-*: initial;
 	--breakpoint-desktop: 960px;
+	--breakpoint-tablet: 768px;
+
 	--spacing-maxw: 1200px;
 	--spacing-desktop: 960px;
 

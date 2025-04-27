@@ -20,8 +20,8 @@ const sizeMap: Record<NonNullable<SolidBtnProps['size']>, string> = {
 };
 
 export const SolidBtn = ({ primary = true, size = 'medium', label, onClick }: SolidBtnProps) => {
-	const base = 'text-white font-semibold flex items-center justify-center';
-	const variant = primary ? 'bg-primary-main-normal ' : 'bg-background-normal-alternative';
+	const base = 'flex items-center justify-center typo-body2-normal font-bold';
+	const variant = primary ? 'text-white bg-primary-main-normal ' : 'text-label-neutral bg-[#EDEDEF]';
 	const sizeClass = sizeMap[size];
 
 	return (
