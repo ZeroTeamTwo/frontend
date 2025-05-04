@@ -54,11 +54,11 @@ export const COMMITTEES: Record<CommitteeName, CommitteeInfo> = {
 	},
 	과학기술정보방송통신위원회: {
 		emoji: '🔬',
-		keywordList: ['IT', 'AI', '과학', '기술', '방송', '우주', '원자력'],
+		keyword_list: ['IT/AI', '과학/기술', '방송', '우주', '원자력'],
 	},
 	농림축산식품해양수산위원회: {
 		emoji: '🌾',
-		keywordList: ['농업', '축산', '식품', '해양', '수산', '먹거리'],
+		keyword_list: ['농수산업', '먹거리'],
 	},
 	기획재정위원회: {
 		emoji: '💰',
@@ -74,15 +74,15 @@ export const COMMITTEES: Record<CommitteeName, CommitteeInfo> = {
 	},
 	산업통상자원중소벤처기업위원회: {
 		emoji: '🏭',
-		keywordList: ['무역', '창업', '자원', '에너지'],
+		keyword_list: ['무역', '창업', '자원에너지'],
 	},
 	국방위원회: {
 		emoji: '🪖',
-		keywordList: ['국방', '안보'],
+		keyword_list: ['국방/안보'],
 	},
 	법제사법위원회: {
 		emoji: '⚖️',
-		keywordList: ['법', '재판'],
+		keyword_list: ['법/재판'],
 	},
 	국회운영위원회: {
 		emoji: '🏛️',
@@ -97,11 +97,11 @@ export const COMMITTEES: Record<CommitteeName, CommitteeInfo> = {
 		keywordList: ['정치'],
 	},
 	여성가족위원회: {
-		emoji: '👪',
-		keywordList: ['가족', '청소년', '성평등', '여성', '아동', '인권'],
+		emoji: ' 👪',
+		keyword_list: ['가족', '청소년', '성평등', '여성아동인권'],
 	},
 	기타: {
 		emoji: '🗂️',
-		keywordList: ['기타'],
+		keyword_list: [],
 	},
 };
