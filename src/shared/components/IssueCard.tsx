@@ -1,12 +1,12 @@
 import React from 'react';
-import { COMMITTEES } from '../const/committee';
 import Image from 'next/image';
+import { CommitteeName, COMMITTEES } from '../const/committee';
 
-export type IssueCardProps = {
+export interface IssueCardProps {
 	/** 카드 제목 */
 	title: string;
 	/** 소속 위원회 */
-	committee: string;
+	committee: CommitteeName;
 	/** 발의자 이름 */
 	name: string;
 	/** 발의 날짜 (YYYY.MM.DD 형태) */
@@ -21,7 +21,7 @@ export type IssueCardProps = {
 	bookmarkNum: number;
 	/** 댓글 수 */
 	commentNum: number;
-};
+}
 
 const IssueCard = ({ title, committee, name, date, state, viewNum, bookmarkNum, commentNum }: IssueCardProps) => {
 	const IconList = [
@@ -40,7 +40,7 @@ const IssueCard = ({ title, committee, name, date, state, viewNum, bookmarkNum, 
 			alt: '댓글수',
 			nums: commentNum,
 		},
-	];
+	] as const; // 좀 더 명확하게 쓸 수 있음
 
 	return (
 		<article className="flex flex-col top-6 left-7 rounded-[12px] pt-5 pr-5 pb-4 pl-6 gap-2.5 desktop:gap-3 bg-bg-white">
@@ -54,7 +54,7 @@ const IssueCard = ({ title, committee, name, date, state, viewNum, bookmarkNum, 
 						<div>{date}</div>
 					</div>
 				</div>
-				<div className="flex items-center justify-center w-[52px] h-[52px] rounded-full bg-bg-gray">{COMMITTEES[committee].emoji}</div>
+				<div className="flex items-center justify-center w-[52px] h-[52px] rounded-full bg-bg-gray">{COMMITTEES[committee]?.emoji}</div>
 			</header>
 			<section className="flex gap-2">
 				<SectionInfo text={state}></SectionInfo>
