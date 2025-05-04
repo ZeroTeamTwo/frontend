@@ -6,7 +6,7 @@ interface IconProps {
 	className?: string;
 }
 
-//TODO: children을 무분별히 받음 React.FC 비선호
+//children을 무분별히 받는 React.FC 비선호
 // https://www.howdy-mj.me/react/react-node-and-jsx-element
 const InfoCircle = ({ width = 16, height = 16, className = '' }: IconProps) => (
 	<svg width={width} height={height} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" className={className}>

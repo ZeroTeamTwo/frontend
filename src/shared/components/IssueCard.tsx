@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { CommitteeName, COMMITTEES } from '../const/committee';
+import TagLabel from './TagLabel';
+import { BillStatus } from '../const/bill';
 
 export interface IssueCardProps {
 	/** 카드 제목 */
@@ -12,7 +14,7 @@ export interface IssueCardProps {
 	/** 발의 날짜 (YYYY.MM.DD 형태) */
 	date: string;
 	/** 현재 상태 */
-	state: string;
+	state: BillStatus;
 	/** 관련 키워드 목록 */
 	keywordList: string[];
 	/** 조회수 */
@@ -57,8 +59,8 @@ const IssueCard = ({ title, committee, name, date, state, viewNum, bookmarkNum, 
 				<div className="flex items-center justify-center w-[52px] h-[52px] rounded-full bg-bg-gray">{COMMITTEES[committee]?.emoji}</div>
 			</header>
 			<section className="flex gap-2">
-				<SectionInfo text={state}></SectionInfo>
-				<SectionInfo text={committee}></SectionInfo>
+				<TagLabel type="status" text={state}></TagLabel>
+				<TagLabel type="committee" text={committee}></TagLabel>
 			</section>
 			<footer className="flex justify-between">
 				<div className="flex gap-2">
@@ -73,14 +75,6 @@ const IssueCard = ({ title, committee, name, date, state, viewNum, bookmarkNum, 
 };
 
 export default IssueCard;
-
-const SectionInfo = ({ text }: { text: string }) => {
-	return (
-		<section className="flex items-center justify-center text-center h-6 rounded-[6px] px-1.5 gap-1 typo-caption1 font-bold bg-[rgba(79,41,229,0.08)] text-accent-fg-violet">
-			{text}
-		</section>
-	);
-};
 
 export const IconWithCount = ({ src, alt, nums }: { src: string; alt: string; nums: number }) => {
 	return (
