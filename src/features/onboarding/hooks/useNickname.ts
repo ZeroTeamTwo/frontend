@@ -42,7 +42,7 @@ export function useNickname(): UseNicknameReturn {
 		} else {
 			setError({ type: null, msg: null });
 		}
-	}, [nickname]);
+	}, [error.type, nickname]);
 	return {
 		nickname,
 		setNickname,

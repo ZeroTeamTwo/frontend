@@ -1,10 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import TagLabel from './TagLabel';
-import { BillStatus } from '../const/bill';
 import { CommitteeName } from '../const/committee';
-
-// BillStatus 타입에 대한 값들
-const billStatusValues: BillStatus[] = ['발의', '진행중', '기각'];
 
 // CommitteeName 타입에 대한 값들
 const committeeNameValues: CommitteeName[] = [
@@ -54,21 +50,6 @@ export default {
 } satisfies Meta<typeof TagLabel>;
 
 type Story = StoryObj<typeof TagLabel>;
-
-export const StatusTag: Story = {
-	args: {
-		type: 'status',
-		text: '발의',
-	},
-	parameters: {
-		argTypes: {
-			text: {
-				control: 'select',
-				options: billStatusValues,
-			},
-		},
-	},
-};
 
 // 'committee'일 때 CommitteeName 값만 들어가도록
 export const CommitteeTag: Story = {

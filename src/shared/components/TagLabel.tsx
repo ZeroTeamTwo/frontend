@@ -47,8 +47,7 @@ const committeeColorGroupMap: Record<CommitteeName, ColorGroup> = {
 /**
  * `TagLabel` 컴포넌트는 `status` 또는 `committee` 타입에 맞는 스타일의 태그를 렌더링합니다. <br/>
  *  status 타입은 `BillStatus`를 사용하고, committee 타입은 `CommitteeName`을 사용합니다. <br />
- * storybook에서는 type은 고정값으로 설정하였고, text만 변경할 수 있게 하였습니다. <br/>
- *  2가지 타입에 대해서 각각 StatusTag와 CommitteeTag로 나누어 스토리를 작성하였습니다.
+ * storybook에서는 type은 고정값 committee로 설정하였고, text만 변경할 수 있게 하였습니다.
  */
 const TagLabel = ({ type, text }: TagLabelProps) => {
 	// TODO: status 타입 정의시 색깔 부여
