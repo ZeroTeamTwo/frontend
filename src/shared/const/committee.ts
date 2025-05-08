@@ -55,6 +55,8 @@ export const KEYWORD_LIST = [
 	'성평등',
 ] as const;
 
+export type KEYWORD = (typeof KEYWORD_LIST)[number];
+
 // 위원회 정보
 export const COMMITTEES: Record<CommitteeName, CommitteeInfo> = {
 	외교통일위원회: {

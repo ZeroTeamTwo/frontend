@@ -9,6 +9,8 @@ export interface DropdownProps {
 	about: string;
 	/**children 에 매개변수를 전달하여 닫기 기능 사용할 수 있도록 구성*/
 	children: (close: () => void) => ReactNode;
+	/** 부가적인 스타일을 위해 추가*/
+	className?: string;
 }
 
 /**
@@ -17,7 +19,7 @@ export interface DropdownProps {
  * 예시) 최신순 조회순으로 정렬하는 필터
  */
 
-export const Dropdown = ({ label, about, children }: DropdownProps) => {
+export const Dropdown = ({ label, about, children, className }: DropdownProps) => {
 	const { open, toggle, close, desktopRef, mobileRef } = useDropdown<HTMLDivElement, HTMLDivElement>();
 
 	return (
@@ -39,7 +41,7 @@ export const Dropdown = ({ label, about, children }: DropdownProps) => {
 					<aside
 						role="dialog"
 						aria-label={about}
-						className="hidden desktop:block absolute left-0 mt-2 px-5 py-2  z-10 bg-white border border-line-neutral shadow-md rounded-[16px]"
+						className={`hidden desktop:block absolute left-0 mt-2 px-5 py-2  z-10 bg-white border border-line-neutral shadow-md rounded-[16px] ${className}`}
 						ref={desktopRef}
 					>
 						{children(close)}
@@ -47,7 +49,12 @@ export const Dropdown = ({ label, about, children }: DropdownProps) => {
 
 					{/* 모바일 */}
 					<div className="desktop:hidden fixed inset-0 z-40 bg-black/80">
-						<aside role="dialog" aria-label={about} className="absolute bottom-0 left-0 w-full bg-white rounded-t-[10px] p-4" ref={mobileRef}>
+						<aside
+							role="dialog"
+							aria-label={about}
+							className={`absolute bottom-0 left-0 w-full bg-white rounded-t-[10px] p-4 ${className}`}
+							ref={mobileRef}
+						>
 							<div className="w-10 h-1.5 bg-[rgba(112,115,124,0.16)] rounded-full mx-auto" />
 							<div className="flex justify-between items-center mb-4 h-16">
 								{/* 좌측 빈 영역(디자인 용) */}
