@@ -2,7 +2,13 @@ import { MyInfo } from '@/features/mypage/const/user';
 import UserInfo from '@/features/mypage/UserInfo';
 
 export default function MyPage() {
-	const myInfo: MyInfo = { nickname: '닉네임', keywordList: ['해외', '문화예술', '성평등'], commentNum: 132, opinionNum: 23, profileImg: '' };
+	const myInfo: MyInfo = {
+		nickname: '닉네임',
+		keywordList: ['해외', '문화예술', '성평등'],
+		commentNum: 132,
+		opinionNum: 23,
+		profileImg: '',
+	} as const;
 
 	return (
 		<div className="flex w-full justify-center items-start pt-0 gap-5 desktop:pt-[114px] max-w-maxw">

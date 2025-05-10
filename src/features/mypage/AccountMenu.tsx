@@ -9,7 +9,8 @@ const AccountMenu = () => {
 	const menuList = [
 		{ label: '프로필 수정', fn: () => {} },
 		{ label: '로그아웃', fn: () => {} },
-	];
+	] as const;
+
 	return (
 		<div className="w-full flex flex-col gap-4">
 			{menuList.map((item) => (
