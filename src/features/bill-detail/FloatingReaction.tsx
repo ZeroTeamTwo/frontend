@@ -59,8 +59,7 @@ const FloatingBtn = ({ reactions, myReaction: initialMyReaction }: Pick<BillDeta
 
 	return (
 		<>
-			{/* TODO */}
-			<div ref={targetRef} className="h-1 bg-accent-bg-blue w-10" />
+			<div ref={targetRef} className="border border-line-neutral w-full" />
 
 			<AnimatePresence>
 				{visible && (
