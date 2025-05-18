@@ -1,1 +1,1 @@
-export type BillStatus = '발의' | '진행중' | '기각'; //TODO: 진행 타입에 따라 변경예정
+export type BillStatus = '발의/소관위원회 심사' | '법제사법위원회심사' | '본회의 심의' | '공포' | '기각';
