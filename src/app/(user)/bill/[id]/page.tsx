@@ -17,7 +17,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
 				<div className="border border-line-neutral	w-full" />
 				<DetailInfo {...data} />
 				<DetailContent detail={data.detail} />
-				<DetailProcess />
+				<DetailProcess status={data.status} />
 				<DetailInteraction reactions={data.reactions} myReaction={data.myReaction} />
 				<DetailComment />
 			</article>

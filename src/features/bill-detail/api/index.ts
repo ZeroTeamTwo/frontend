@@ -39,7 +39,7 @@ export const getBillDetail = (id: string): BillDetalProps => {
 		committee: '과학기술정보방송통신위원회',
 		name: '홍길동',
 		date: '2025.05.01',
-		status: '발의/소관위원회 심사',
+		status: '법제사법위원회심사',
 		viewNum: 1234,
 		bookmarkNum: 56,
 		commentNum: 12,
