@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-
 import { BillDetalProps } from './api';
 import { BillReaction } from './const';
 import Image from 'next/image';
+import ShareButton from '@/shared/components/ShareBtn';
 
 const IconMap: { label: BillReaction; emoji: string }[] = [
 	{ label: '좋아요', emoji: '👍' },
@@ -80,10 +81,7 @@ const DetailInteraction = ({ reactions, myReaction: initialMyReaction }: Pick<Bi
 							<Image src="/svgs/bookmark.svg" alt="북마크" width={18} height={18} className="py-0.5" />
 							<span className="text-label-alternative/61">북마크</span>
 						</div>
-						<div className="flex  gap-1 items-center">
-							<Image src="/svgs/share.svg" alt="공유하기" width={18} height={18} className="py-0.5" />
-							<span className=" text-label-alternative/61">공유하기</span>
-						</div>
+						<ShareButton />
 					</div>
 				</div>
 			</div>

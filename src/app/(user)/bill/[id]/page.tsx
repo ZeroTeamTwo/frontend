@@ -5,6 +5,7 @@ import DetailInfo from '@/features/bill-detail/DetailInfo';
 import DetailInteraction from '@/features/bill-detail/DetailInteraction';
 import DetailProcess from '@/features/bill-detail/DetailProcess';
 import DetailTitle from '@/features/bill-detail/DetailTitle';
+import ScrollUpBtn from '@/shared/components/ScrollUpBtn';
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = await params;
@@ -20,6 +21,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
 				<DetailInteraction reactions={data.reactions} myReaction={data.myReaction} />
 				<DetailComment />
 			</article>
+			<ScrollUpBtn />
 		</div>
 	);
 }
