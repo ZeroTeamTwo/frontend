@@ -13,7 +13,9 @@ const DetailProcess = ({ status }: { status: BillStatus }) => {
 		<section className="flex flex-col w-full px-1 py-5 gap-5 desktop:px-9 desktop:py-8">
 			<h3 className="typo-heading2 font-bold text-label-normal desktop:typo-heading1">법안 처리 상황</h3>
 			<div className="flex flex-col gap-9">
-				<div className=" bg-bg-gray text-center align-middle px-5 py-4 rounded-[12px]">{BILL_STATUS_STEP[status].label}</div>
+				<div className="px-5 py-4 rounded-[12px] typo-body2-normal text-label-normal font-regular text-center align-middle bg-bg-gray desktop:typo-body1-reading">
+					{BILL_STATUS_STEP[status].label}
+				</div>
 				<div className="flex flex-col desktop:flex-row w-full ">{processBar}</div>
 			</div>
 		</section>
