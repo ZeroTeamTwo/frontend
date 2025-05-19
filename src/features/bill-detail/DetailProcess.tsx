@@ -1,6 +1,5 @@
 import { BILL_STATUS_STEP, BillStatus } from '@/shared/const/bill';
 import CheckIcon from '@/shared/icon/Check';
-import InfoCircle from '@/shared/icon/InfoCircle';
 import React from 'react';
 
 const DetailProcess = ({ status }: { status: BillStatus }) => {
@@ -43,7 +42,7 @@ const ProcessItem = ({ status, currentStatus }: { status: BillStatus; currentSta
 					<span
 						className={`flex items-center gap-0.5 typo-label1-normal font-bold ${stepStatus === '현재' ? 'text-label-normal' : 'text-label-alternative'}`}
 					>
-						{status} {(status === '법제사법위원회심사' || status === '본회의 심의') && <InfoCircle width={16} height={16} />}
+						{status}
 					</span>
 					{stepStatus !== '대기' && <span className="typo-caption1 font-regular text-interaction-inactive">2055.00.00 의결</span>}
 				</div>
