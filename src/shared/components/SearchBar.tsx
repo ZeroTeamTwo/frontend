@@ -1,6 +1,7 @@
 'use client';
 
 import useSearch from '../hooks/useSearch';
+import CancelCircleIcon from '../icon/CancelCircle';
 import SearchIcon from '../icon/Search';
 
 /**
@@ -16,7 +17,7 @@ const SearchBar = () => {
 			onSubmit={(e) => {
 				e.preventDefault();
 			}}
-			className="flex pl-3.5 pr-[18px] py-2 gap-2 border-2 border-line-normal focus-within:ring-2 rounded-[12px] focus-within:ring-primary-main-normal"
+			className="flex p-3 gap-2 border-2 w-full items-center max-w-[660px] border-line-normal focus-within:ring-2 rounded-[12px] focus-within:ring-primary-main-normal desktop:max-w-[960px]"
 		>
 			<SearchIcon width={20} height={20} className="text-label-assistive" />
 
@@ -24,9 +25,16 @@ const SearchBar = () => {
 				type="text"
 				value={searchTerm}
 				onChange={(e) => setSearchTerm(e.target.value)}
-				placeholder="검색어를 입력하세요"
-				className="outline-none typo-body2-normal text-black"
+				placeholder="검색어를 입력해주세요"
+				className="flex-1 outline-none typo-body2-normal text-black"
 			/>
+			{searchTerm.length === 0 ? (
+				<div />
+			) : (
+				<button onClick={() => setSearchTerm('')}>
+					<CancelCircleIcon width={22} height={22} />
+				</button>
+			)}
 		</form>
 	);
 };

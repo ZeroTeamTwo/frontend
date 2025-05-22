@@ -1,8 +1,8 @@
-type SearchIconProps = {
+interface SearchIconProps {
 	className?: string;
 	width?: number | string;
 	height?: number | string;
-};
+}
 
 const SearchIcon = ({ className = 'text-[#171719]', width = 18, height = 18 }: SearchIconProps) => {
 	return (

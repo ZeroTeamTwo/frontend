@@ -8,7 +8,7 @@ export default function SearchPage() {
 			<SearchBar />
 			<section className="flex flex-col gap-5  items-baseline py-8 desktop:items-center">
 				<h2 className="typo-headline1 font-bold">추천 검색어</h2>
-				<div className="flex flex-wrap gap-2">
+				<div className="flex flex-wrap gap-2 max-w-[660px]">
 					{data.map((word, i) => (
 						<Link
 							key={word + i}
