@@ -1,7 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import useSearch from '../hooks/useSearch';
+import SearchIcon from '../icon/Search';
 
 /**
  * `SearchBar` 컴포넌트는 검색어를 입력하는 입력 필드와 검색 아이콘을 포함하는 컴포넌트입니다.
@@ -16,8 +16,10 @@ const SearchBar = () => {
 			onSubmit={(e) => {
 				e.preventDefault();
 			}}
-			className="flex pl-3.5 pr-[18px] py-2 gap-2 border border-line-normal focus-within:ring-2 rounded-full focus-within:ring-material-dimmer"
+			className="flex pl-3.5 pr-[18px] py-2 gap-2 border-2 border-line-normal focus-within:ring-2 rounded-[12px] focus-within:ring-primary-main-normal"
 		>
+			<SearchIcon width={20} height={20} className="text-label-assistive" />
+
 			<input
 				type="text"
 				value={searchTerm}
@@ -25,7 +27,6 @@ const SearchBar = () => {
 				placeholder="검색어를 입력하세요"
 				className="outline-none typo-body2-normal text-black"
 			/>
-			<Image src="/svgs/search.svg" alt="search-icon" width={20} height={20} />
 		</form>
 	);
 };
