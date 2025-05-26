@@ -1,7 +1,7 @@
 import React from 'react';
 import { EVENT_DETAIL_DATA, EventPerson } from './const/data';
-import Image from 'next/image';
 import Link from 'next/link';
+import RightIcon from '@/shared/icon/Right';
 
 const EventBill = ({ name }: { name: EventPerson }) => {
 	const bill = EVENT_DETAIL_DATA[name].bill;
@@ -21,7 +21,7 @@ const EventBill = ({ name }: { name: EventPerson }) => {
 						<span className="typo-label1-normal text-label-normal w-[64px] text-center desktop:typo-headline1 desktop:w-[80px] ">{category}</span>
 						<div className="w-[2.5px] h-[16px] bg-[#E1E2E4]" />
 						<span className="flex-1 typo-label1-normal desktop:typo-headline1 break-words">{title}</span>
-						<Image src={'/svgs/right.svg'} alt="추가 내용있음" width={10} height={18} className="text-[#E1E2E4]" />
+						<RightIcon width={10} height={10} className="text-[#E1E2E4]" />
 					</Link>
 				))}
 			</div>
