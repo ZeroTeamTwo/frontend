@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { EVENT_DETAIL_DATA, EventPerson } from './const/data';
-import { aggroFont } from '@/app/layout';
+import { aggroFont } from '@/shared/const/font';
 
 const EventHeader = ({ name }: { name: EventPerson }) => {
 	const color: Record<EventPerson, string> = {
@@ -10,7 +10,7 @@ const EventHeader = ({ name }: { name: EventPerson }) => {
 	};
 	return (
 		<section
-			className={`relative overflow-hidden flex flex-col w-full px-6 pt-8 items-center desktop:px-12 desktop:flex-row-reverse rounded-[20px] desktop:justify-between max-desktop:pb-8 ${color[name]}`}
+			className={`relative overflow-hidden flex flex-col w-full px-9 max-[500px]:px-6 pt-8 items-center desktop:px-12 desktop:flex-row-reverse rounded-[20px] desktop:justify-between max-desktop:pb-8 ${color[name]}`}
 		>
 			<Image
 				src={`/images/event/${name}.png`}
@@ -20,7 +20,7 @@ const EventHeader = ({ name }: { name: EventPerson }) => {
 				className="desktop:self-end z-5 max-desktop:mb-8 max-desktop:w-[230px] object-cover"
 			/>
 			<div className="flex flex-col flex-1 w-full items-center desktop:items-baseline gap-10 desktop:pt-10 z-5">
-				<div className="flex flex-col text-white max-desktop:gap-2 max-desktop:items-center">
+				<div className="flex flex-col text-white gap-2 max-desktop:items-center ">
 					<span className="flex typo-body1-normal desktop:typo-headline1 font-bold ">{EVENT_DETAIL_DATA[name].party}</span>
 					<h1 className={`${aggroFont.className} typo-aggro-name text-[48px] font-bold desktop:text-[64px]`}>{name}</h1>
 				</div>

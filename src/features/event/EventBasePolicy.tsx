@@ -1,4 +1,4 @@
-import { aggroFont } from '@/app/layout';
+import { aggroFont } from '@/shared/const/font';
 import { EVENT_DETAIL_DATA, EventPerson } from './const/data';
 import { Fragment } from 'react';
 

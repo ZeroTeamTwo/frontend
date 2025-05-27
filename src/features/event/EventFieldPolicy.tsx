@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { EVENT_DETAIL_DATA, EventPerson } from './const/data';
 import StretchLine from './StretchLine';
-import { aggroFont } from '@/app/layout';
+import { aggroFont } from '@/shared/const/font';
 
 const EventFieldPolicy = ({ name }: { name: EventPerson }) => {
 	const filedPolicy = EVENT_DETAIL_DATA[name].policyByField;
