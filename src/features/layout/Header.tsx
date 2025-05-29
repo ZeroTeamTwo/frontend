@@ -9,7 +9,7 @@ import SearchIcon from '@/shared/icon/Search';
 const Header = () => {
 	return (
 		<header className="w-full px-5 mx-auto flex justify-center">
-			<div className="flex justify-between items-center sticky top-0 w-full max-w-maxw bg-red-90 h-16">
+			<div className="flex justify-between items-center sticky top-0 w-full max-w-maxw h-16">
 				<Link href="/" className="font-medium">
 					<Image
 						src="/svgs/logo.svg"
