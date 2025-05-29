@@ -61,7 +61,7 @@ const PolicyContent = () => {
 			</div>
 			<div className="flex flex-col items-center w-full">
 				{(categoryList.length > 0 ? categoryList : CATEGORY).map((category) => (
-					<PolicyItem key={name + category} name={mobileHubo} category={category} />
+					<PolicyItem key={mobileHubo + category} name={mobileHubo} category={category} />
 				))}
 			</div>
 		</>
