@@ -21,7 +21,7 @@ const MobileHubo = ({ name }: { name: EventPerson }) => {
 	const y = useTransform(scrollYProgress, [0.4, 0.55], ['100%', '0%']);
 
 	return (
-		<section ref={ref} className="h-[210vh] relative w-full">
+		<section ref={ref} className="h-[210vh] relative w-full desktop:hidden">
 			<div className="sticky top-16 h-[calc(100vh-64px)] flex flex-col">
 				{/* 붙는녀석은 항상 보이게 */}
 				<div className={`h-1/2 flex items-center justify-center ${HUBO_COLOR[name].bg}`}>
