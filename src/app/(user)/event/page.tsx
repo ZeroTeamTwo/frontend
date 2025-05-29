@@ -1,4 +1,5 @@
 import HuboCard from '@/features/event-home/HuboCard';
+import MobileHubo from '@/features/event-home/MobileHubo';
 import { EventPerson } from '@/features/event/const/data';
 import React from 'react';
 
@@ -26,7 +27,12 @@ const page = () => {
 						<HuboCard key={name + i} name={name} />
 					))}
 				</div>
+				{HUBO.map((name, i) => (
+					<MobileHubo key={name + i} name={name} />
+				))}
 			</section>
+
+			<section className="bg-accent-bg-green h-[600px] w-full">임시 영역</section>
 		</div>
 	);
 };

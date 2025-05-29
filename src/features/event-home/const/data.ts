@@ -1,3 +1,9 @@
+export const HUBO_COLOR = {
+	이재명: { bg: 'bg-[#152484]', icon: '#7EA7FF', group: 'group-hover:bg-[#152484]' },
+	김문수: { bg: 'bg-[#E61E2B]', icon: '#FF9CA7', group: 'group-hover:bg-[#E61E2B]' },
+	이준석: { bg: 'bg-[#FF7210]', icon: '#FFC48F', group: 'group-hover:bg-[#ff7210]' },
+} as const;
+
 export const EVENT_HOME_CARD_DATA = {
 	이재명: {
 		party: '더불어민주당',

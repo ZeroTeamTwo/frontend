@@ -1,6 +1,6 @@
 import React from 'react';
 import { EventPerson } from '../event/const/data';
-import { EVENT_HOME_CARD_DATA } from './const/data';
+import { EVENT_HOME_CARD_DATA, HUBO_COLOR } from './const/data';
 import Link from 'next/link';
 import Image from 'next/image';
 import WavePathIcon from './icon/WaveIcon';
@@ -9,11 +9,6 @@ import ArrowIcon from './icon/RightArrow';
 const HuboCard = ({ name }: { name: EventPerson }) => {
 	const data = EVENT_HOME_CARD_DATA[name];
 
-	const HUBO_COLOR = {
-		이재명: { bg: 'bg-[#152484]', icon: '#7EA7FF', group: 'group-hover:bg-[#152484]' },
-		김문수: { bg: 'bg-[#E61E2B]', icon: '#FF9CA7', group: 'group-hover:bg-[#E61E2B]' },
-		이준석: { bg: 'bg-[#FF7210]', icon: '#FFC48F', group: 'group-hover:bg-[#ff7210]' },
-	} as const;
 	return (
 		<Link href={`/event/${name}`} className="group flex flex-col w-full border-[1.5px] border-line-normal rounded-[12px] overflow-hidden">
 			<article className="flex flex-col items-center w-full">
@@ -35,8 +30,9 @@ const HuboCard = ({ name }: { name: EventPerson }) => {
 						</p>
 						<p className="typo-label1-normal font-regular text-label-alternative group-hover:text-white">{data.party}</p>
 					</div>
-					<div className="relative text-center text-[32px] leading-[136%] font-bold group-hover:text-white">
-						{data.light.comment}
+					<div className="relative text-center text-[32px] leading-[136%] font-bold ">
+						<span className="group-hover:hidden">{data.light.comment}</span>
+						<span className="text-white hidden group-hover:block">{data.dark.comment}</span>
 						<WavePathIcon fill={HUBO_COLOR[name].icon} className="-translate-y-5/7 group-hover:hidden" />
 						<WavePathIcon className="hidden -translate-y-5/7 group-hover:block" />
 					</div>
