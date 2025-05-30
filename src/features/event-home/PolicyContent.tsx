@@ -27,13 +27,16 @@ const PolicyContent = () => {
 	};
 	return (
 		<>
-			<div className="w-full flex justify-center desktop:gap-5 max-desktop:justify-between">
-				<CategoryBtn text="전체" isSelected={categoryList.length === 0} clickFn={() => setCategoryList([])} />
-				{CATEGORY.map((category) => {
-					const isSelected = categoryList.includes(category);
-					return <CategoryBtn key={category} text={category} isSelected={isSelected} clickFn={() => toggleCategory(category)} />;
-				})}
+			<div className="w-full overflow-x-auto">
+				<div className="flex flex-nowrap min-[550px]:justify-center gap-5">
+					<CategoryBtn text="전체" isSelected={categoryList.length === 0} clickFn={() => setCategoryList([])} />
+					{CATEGORY.map((category) => {
+						const isSelected = categoryList.includes(category);
+						return <CategoryBtn key={category} text={category} isSelected={isSelected} clickFn={() => toggleCategory(category)} />;
+					})}
+				</div>
 			</div>
+
 			<div className="desktop:hidden flex justify-center gap-3.5">
 				{HUBO.map((hubo) => (
 					<HuboBtn key={hubo} text={hubo} isSelected={mobileHubo === hubo} clickFn={() => selectHubo(hubo)} />
@@ -79,7 +82,7 @@ interface btnProps {
 const CategoryBtn = ({ text, isSelected, clickFn }: btnProps) => {
 	const btnClass = isSelected ? 'text-white bg-[#6541F2] border-#6541F2' : 'text-label-alternative border-label-alternative';
 	return (
-		<button onClick={clickFn} className={`text-center rounded-[10px] pl-3 pr-2.5 py-[9px] border-1 typo-body2-normal ${btnClass}`}>
+		<button onClick={clickFn} className={`text-center rounded-[10px] pl-3 pr-2.5 py-[9px] border-1 typo-body2-normal whitespace-nowrap ${btnClass}`}>
 			{text}
 		</button>
 	);
