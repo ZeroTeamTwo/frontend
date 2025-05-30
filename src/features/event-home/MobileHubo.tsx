@@ -75,49 +75,6 @@ const MobileHubo = ({ name }: { name: EventPerson }) => {
 							</div>
 						</div>
 					</div>
-
-					{/* <div className="h-full flex flex-col items-center justify-between">
-						<div className="flex flex-col items-center p-5 gap-6 max-w-[320px] h-full bg-accent-bg-blue ">
-							<div className="flex flex-col items-center gap-2">
-								<p className="text-center typo-heading1 font-bold text-label-normal ">
-									{data.light.keyword.first}
-									<br />
-									{data.light.keyword.second}
-								</p>
-								<p className="hidden text-center typo-heading1 font-bold text-white ">
-									{data.dark.keyword.first}
-									<br />
-									{data.dark.keyword.second}
-								</p>
-								<p className="typo-label1-normal font-regular text-label-alternative ">{data.party}</p>
-							</div>
-							<div className="relative text-center text-[30px] leading-[136%] h-[36px] font-bold ">
-								<span className="relative z-1">{data.light.comment}</span>
-								<WavePathIcon fill={HUBO_COLOR[name].icon} className="-translate-y-5/7" />
-							</div>
-							<div className="flex w-full flex-wrap gap-x-4 px-6 py-5 justify-center h-[134px] items-center ">
-								{data.light.info.map((text) => (
-									<span key={text} className="h-6.5 typo-headline1 font-regular text-center text-label-normal">
-										{text}
-									</span>
-								))}
-							</div>
-
-							<div className="flex w-full justify-between h-6 items-center">
-								<div className="flex gap-2">
-									{data.light.label.map((item) => (
-										<div
-											key={item.text}
-											className={`flex items-center text-center typo-caption1 ${item.color} ${item.bg}  rounded-[6px] h-6 px-1.5 `}
-										>
-											{item.text}
-										</div>
-									))}
-								</div>
-								<ArrowIcon className="text-[#989BA2]" />
-							</div>
-						</div>
-					</div> */}
 					{/* 올라오는 어두운 면 */}
 					<motion.div style={{ y }} className={`absolute inset-0 flex flex-col items-center z-10 ${HUBO_COLOR[name].bg}`}>
 						<div className="flex flex-col items-center p-5 gap-6 max-w-[320px] h-full">
