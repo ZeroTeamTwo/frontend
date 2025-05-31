@@ -12,7 +12,7 @@ const Navibar = () => {
 			 */}
 
 			<NaviBtn title="제 21대 대선" link="/" />
-			<NaviBtn title="그래이픽이란?" target="_blank" link="/" />
+			<NaviBtn title="그래이픽이란?" target="_blank" link="https://tally.so/r/wQWzY7" />
 		</nav>
 	);
 };
