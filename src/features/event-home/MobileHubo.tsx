@@ -31,7 +31,7 @@ const MobileHubo = ({ name }: { name: EventPerson }) => {
 				<div className="relative h-[55%] overflow-hidden">
 					{/* 다음녀석 */}
 					<div className="h-full flex flex-col items-center">
-						<div className="flex flex-col items-center p-5 gap-6 max-w-[320px] h-full">
+						<div className="flex flex-col items-center p-5 gap-6 max-w-[400px] h-full">
 							<div className="flex flex-col items-center gap-2">
 								<p className="text-center typo-heading1 font-bold text-label-normal ">
 									{data.light.keyword.first}
@@ -77,7 +77,7 @@ const MobileHubo = ({ name }: { name: EventPerson }) => {
 					</div>
 					{/* 올라오는 어두운 면 */}
 					<motion.div style={{ y }} className={`absolute inset-0 flex flex-col items-center z-10 ${HUBO_COLOR[name].bg}`}>
-						<div className="flex flex-col items-center p-5 gap-6 max-w-[320px] h-full">
+						<div className="flex flex-col items-center p-5 gap-6 max-w-[400px] h-full">
 							<div className="flex flex-col items-center gap-2">
 								<p className="text-center typo-heading1 font-bold text-white ">
 									{data.dark.keyword.first}
