@@ -42,7 +42,7 @@ jobs:
             docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin ${{ secrets.DOCKERHUB_TOKEN }}
             docker rm -f graypick-front || true
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/graypick-front:latest
-            docker run -d -p 80:80 \
+            docker run -d -p 3000:80 \
               --name graypick-front \
               ${{ secrets.DOCKERHUB_USERNAME }}/graypick-front:latest
             docker image prune -f
