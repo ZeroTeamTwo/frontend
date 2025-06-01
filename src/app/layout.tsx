@@ -8,6 +8,16 @@ export const metadata: Metadata = {
 		default: '그래, 이 픽',
 	},
 	description: '3초면 끝. 당신의 일상에 딱, 바로 이 픽!',
+	openGraph: {
+		title: '그래, 이 픽',
+		description: '3초면 끝. 당신의 일상에 딱, 바로 이 픽!',
+		// TODO: 이미지 url 수정
+		images: 'https://imgur.com/a/bSuz7vc',
+		locale: 'ko_KR',
+		url: 'https://graypick.co.kr/',
+		type: 'website',
+		siteName: '그래, 이 픽',
+	},
 };
 
 const pretendard = localFont({
