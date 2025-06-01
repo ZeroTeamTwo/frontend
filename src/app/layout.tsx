@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
+import GoogleAnalytics from '@/shared/script/GoogleAnalytics';
 
 export const metadata: Metadata = {
 	title: {
@@ -11,8 +12,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: '그래, 이 픽',
 		description: '3초면 끝. 당신의 일상에 딱, 바로 이 픽!',
-		// TODO: 이미지 url 수정
-		images: 'https://imgur.com/a/bSuz7vc',
+		images: 'https://cdn.jsdelivr.net/gh/ZeroTeamTwo/frontend/public/images/og-image.png',
 		locale: 'ko_KR',
 		url: 'https://graypick.co.kr/',
 		type: 'website',
@@ -49,6 +49,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${pretendard.className} antialiased flex flex-col items-center w-full  min-h-screen mx-auto`}>{children}</body>
+			<GoogleAnalytics gaId="G-64MDTYBYT3" />
 		</html>
 	);
 }
