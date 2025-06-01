@@ -28,9 +28,11 @@ export default function Home() {
 						<HuboCard key={name + i} name={name} />
 					))}
 				</div>
-				{HUBO.map((name, i) => (
-					<MobileHubo key={name + i} name={name} />
-				))}
+				<div className="flex flex-col w-full items-center">
+					{HUBO.map((name, i) => (
+						<MobileHubo key={name + i} name={name} />
+					))}
+				</div>
 			</section>
 
 			<HuBoPolicy />

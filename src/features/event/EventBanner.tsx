@@ -27,7 +27,7 @@ const EventBanner = () => {
 						alt="모바일 후보들"
 						width={250}
 						height={80}
-						className="h-20 mr-[2%] min-[450]:mr-[6%] desktop:mr-0 max-[500px]:w-[150px]"
+						className="w-[220px] object-contain mr-[2%] min-[450]:mr-[6%] max-[450px]:w-[200px] max-[380px]:w-[145px]"
 						priority
 					/>
 				</div>
