@@ -2,10 +2,10 @@ import Image from 'next/image';
 
 const EventBanner = () => {
 	return (
-		<div className="relative w-full  h-[90px] desktop:h-[146px] desktop:rounded-[20px] desktop:overflow-auto max-desktop:mb-6 desktop:w-[calc(100%-72px)]">
+		<div className="relative w-full  h-[90px] desktop:h-[146px] desktop:rounded-[20px]  desktop:overflow-auto max-desktop:mb-6 desktop:w-[calc(100%-72px)]">
 			<Image src="/images/event/banner.png" alt="배너 이미지" fill className="max-desktop:hidden object-cover" priority />
 			<div
-				className="desktop:hidden absolute left-1/2 -translate-x-1/2 h-[90px] w-[120%] max-w-[960px] flex justify-center items-end"
+				className="desktop:hidden absolute left-1/2 -translate-x-1/2 h-[90px] w-[100vw] max-w-[960px] flex justify-center items-end"
 				style={{
 					background: 'linear-gradient(92.03deg, #4F29E5 39.63%, #43E5B2 110.39%)',
 				}}
