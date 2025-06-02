@@ -48,10 +48,12 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="ko">
+			<head>
+				<GoogleAnalytics gaId="G-64MDTYBYT3" />
+				<MicrosoftClarity clId="rslbkldy5n" />
+			</head>
 			<body className={`${pretendard.className} antialiased flex flex-col items-center w-full  min-h-screen mx-auto`}>{children}</body>
-			<GoogleAnalytics gaId="G-64MDTYBYT3" />
-			<MicrosoftClarity clId="rslbkldy5n" />
 		</html>
 	);
 }
