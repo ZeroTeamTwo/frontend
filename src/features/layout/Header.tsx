@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const Header = () => {
 	return (
-		<header className="sticky top-0 w-full px-5 mx-auto flex justify-center bg-white z-20">
+		<header className="sticky top-0 w-full px-5 mx-auto flex justify-center bg-white z-20 shadow-xs">
 			<div className="flex justify-between items-center top-0 w-full max-w-maxw h-16">
 				<Link href="/" className="font-medium">
 					<Image
