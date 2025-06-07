@@ -1,21 +1,36 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { COOKIE_NAME } from './shared/const/cookie';
 
 export async function middleware(req: NextRequest) {
 	const { pathname } = req.nextUrl;
 	const cookieStore = await cookies();
 
-	const accessToken = cookieStore.get('accesstoken');
-	const nickname = cookieStore.get('nickname');
+	// 오타 방지용 상수값 관리
+	const { access, refresh, userId, nickname } = COOKIE_NAME.auth;
+	const protectedPaths = ['/onboarding', '/mypage'];
 
-	console.log('Middleware Access Token:', accessToken);
-	if (!accessToken && pathname.startsWith('/onboarding')) {
+	const hasToken = cookieStore.has(access);
+	const nickValue = cookieStore.get(nickname)?.value;
+
+	// 닉네임 없이 onboarding페이지 이탈시 토큰 제거 (로그아웃)
+	if (hasToken && nickValue === '' && !(pathname === '/onboarding')) {
+		cookieStore.delete(access);
+		cookieStore.delete(refresh);
+		cookieStore.delete(userId);
+		cookieStore.delete(nickname);
+
+		if (pathname !== '/onboarding') {
+			return NextResponse.redirect(new URL('/', req.url));
+		}
+	}
+
+	// 토큰없을 경우 특정 페이지 진입 불가
+	if (!hasToken && protectedPaths.includes(pathname)) {
 		return NextResponse.redirect(new URL('/', req.url));
 	}
-	if (accessToken && !nickname?.value && !pathname.startsWith('/onboarding')) {
-		return NextResponse.redirect(new URL('/onboarding', req.url));
-	}
+
 	return NextResponse.next();
 }
 
