@@ -15,7 +15,6 @@ const OnboardingForm = () => {
 		const formData = new FormData(e.currentTarget);
 		const nickname = formData.get('nickname');
 
-		console.log(nickname, keywords);
 		alert(`${nickname} ${keywords}`);
 	};
 

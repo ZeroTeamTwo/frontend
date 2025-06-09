@@ -42,8 +42,6 @@ export function useNickname(): UseNicknameReturn {
 			if (isDuplicate) {
 				setError({ type: 'duplicate', msg: '이미 사용 중인 닉네임입니다.' });
 			} else {
-				console.log(isDuplicate, '실행되나');
-
 				setError({ type: null, msg: null });
 				setIsDuplicateChecked(true);
 			}
