@@ -29,15 +29,30 @@ export function useNickname(): UseNicknameReturn {
 		if (!isValidLength) return;
 		setIsChecking(true);
 		try {
-			// 실제 API 호출로 대체 필요
-			// const response = await fetch('/api/check-nickname', {
-			//   method: 'POST',
-			//   body: JSON.stringify({ nickname }),
-			// });
-			// const data = await response.json();
-			// 예시 목적으로 임의 지연 및 결과 설정
-			await new Promise((resolve) => setTimeout(resolve, 500));
-			const isDuplicate = false; // 실제 API 응답에 따라 설정
+			const token = localStorage.getItem('accesstoken'); // 혹은 context나 cookie에서 가져오기
+
+			if (!token) {
+				throw new Error('로그인 토큰이 없습니다.');
+			}
+
+			const response = await fetch('http://13.209.248.6:8080/api/users/nickname/check', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json;charset=UTF-8',
+					Authorization: `Bearer ${token}`,
+					Accept: 'application/json;charset=UTF-8',
+				},
+				body: JSON.stringify({ nickname }),
+			});
+
+			if (!response.ok) {
+				throw new Error('서버 응답 오류');
+			}
+
+			const data = await response.json();
+
+			// 서버 응답에 따라 중복 여부 확인
+			const isDuplicate = data?.duplicate ?? true; // API 응답 구조에 따라 수정
 			if (isDuplicate) {
 				setError({ type: 'duplicate', msg: '이미 사용 중인 닉네임입니다.' });
 			} else {
@@ -50,7 +65,7 @@ export function useNickname(): UseNicknameReturn {
 		} finally {
 			setIsChecking(false);
 		}
-	}, [isValidLength]);
+	}, [isValidLength, nickname]);
 	// 닉네임 변경 시 중복 확인 초기화
 	const resetDuplicateCheck = useCallback(() => {
 		setIsDuplicateChecked(false);
