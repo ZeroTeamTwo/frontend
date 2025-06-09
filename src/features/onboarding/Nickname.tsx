@@ -24,7 +24,6 @@ const Nickname = ({ setIsValidate }: NicknameProps) => {
 	const { nickname, setNickname, error, isChecking, isValidLength, isDuplicateChecked, checkDuplicate, isValid } = useNickname();
 
 	const isDuplicateButtonDisabled = !isValidLength || isChecking || isDuplicateChecked;
-	console.log('isDuplicateButtonDisabled:', isDuplicateButtonDisabled);
 	const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
 	useEffect(() => {
