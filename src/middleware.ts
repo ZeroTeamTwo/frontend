@@ -14,6 +14,7 @@ export async function middleware(req: NextRequest) {
 	const hasToken = cookieStore.has(access);
 	const nickValue = cookieStore.get(nickname)?.value;
 
+	console.log(cookieStore.get(access)?.value);
 	// 닉네임 없이 onboarding페이지 이탈시 토큰 제거 (로그아웃)
 	if (hasToken && nickValue === '' && !(pathname === '/onboarding')) {
 		cookieStore.delete(access);
