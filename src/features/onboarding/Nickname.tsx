@@ -44,6 +44,7 @@ const Nickname = ({ setIsValidate }: NicknameProps) => {
 			<div className="flex gap-[15px] h-10">
 				<Input<NicknameInputExtension>
 					id="nickname"
+					name="nickname"
 					value={nickname}
 					onChange={(val) => setNickname(val)}
 					placeholder="3~8글자 이내로 입력"
@@ -54,7 +55,6 @@ const Nickname = ({ setIsValidate }: NicknameProps) => {
 					label={isChecking ? '확인 중...' : '중복 확인'}
 					onClick={checkDuplicate}
 					disabled={isDuplicateButtonDisabled}
-					className={isDuplicateButtonDisabled ? 'opacity-50 cursor-not-allowed' : ''}
 				/>
 			</div>
 		</section>

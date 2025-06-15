@@ -1,9 +1,8 @@
-type BookmarkIconProps = {
-	// TODO: 옵셔널 빼기
+interface BookmarkIconProps {
 	isChecked?: boolean;
 	color?: string;
 	size?: number;
-};
+}
 
 const BookmarkIcon = ({ isChecked = false, color = '#6541F2', size = 18 }: BookmarkIconProps) => {
 	return (
