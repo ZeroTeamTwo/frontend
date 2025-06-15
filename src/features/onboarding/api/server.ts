@@ -1,7 +1,10 @@
 'use server';
 
+import { logout } from '@/shared/api/auth';
+import { authorizedFetcher } from '@/shared/api/fetcher';
 import { Keyword } from '@/shared/const/committee';
 import { COOKIE_NAME } from '@/shared/const/cookie';
+import { RefreshTokenError } from '@/shared/const/error';
 import { cookies } from 'next/headers';
 
 // 닉네임 중복 확인 API
@@ -36,21 +39,23 @@ export async function onboardUser(nickname: string, keywords: Keyword[]) {
 	const token = cookieStore.get(COOKIE_NAME.auth.access)?.value;
 
 	if (!token) {
-		throw new Error('토큰이 존재하지 않습니다.');
+		return { status: 'relogin' };
 	}
 
-	const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/me/onboarding`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json;charset=UTF-8',
-			Authorization: `Bearer ${token}`,
-			Accept: 'application/json;charset=UTF-8',
-		},
-		body: JSON.stringify({ nickname, interestKeywords: keywords }),
-		cache: 'no-store',
-	});
+	try {
+		await authorizedFetcher('/api/users/me/onboarding', {
+			method: 'POST',
+			body: JSON.stringify({ nickname, interestKeywords: keywords }),
+			cache: 'no-store',
+		});
 
-	const data = await response.json();
-
-	return data;
+		return { status: 'success' };
+	} catch (err) {
+		if (err instanceof RefreshTokenError) {
+			await logout(token);
+			return { status: 'relogin' };
+		} else {
+			return { status: 'retry' };
+		}
+	}
 }
