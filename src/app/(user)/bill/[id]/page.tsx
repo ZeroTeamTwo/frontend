@@ -21,9 +21,9 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
 				<DetailTitle {...data} />
 				<div className="border border-line-neutral	w-full" />
 				<DetailInfo {...data} />
-				<DetailContent detail={data.detail} />
-				<DetailProcess status={data.status} />
-				<DetailInteraction reactions={data.reactions} myReaction={data.myReaction} />
+				<DetailContent detail={data.billSummary} />
+				<DetailProcess status={data.billStatus} />
+				<DetailInteraction />
 				<DetailCommentList />
 			</article>
 			<ScrollUpBtn />

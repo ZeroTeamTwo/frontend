@@ -11,6 +11,13 @@ interface FetcherOptions extends Omit<RequestInit, 'method'> {
 	method?: HttpMethod;
 }
 
+interface ApiResponse<T> {
+	isSuccess: boolean;
+	responseCode: number;
+	responseMessage: string;
+	result: T;
+}
+
 export async function fetcher(path: string, options: FetcherOptions = {}): Promise<Response> {
 	const { headers, body, method = 'GET', ...rest } = options;
 
@@ -29,7 +36,7 @@ export async function fetcher(path: string, options: FetcherOptions = {}): Promi
 	return response;
 }
 
-export async function tokenFetcher<T>(path: string, options: FetcherOptions = {}, isRetry: boolean = false): Promise<T> {
+export async function tokenFetcher<T>(path: string, options: FetcherOptions = {}, isRetry: boolean = false): Promise<ApiResponse<T>> {
 	const cookieStore = await cookies();
 	const { access } = COOKIE_NAME.auth;
 	const accessToken = cookieStore.get(access)?.value;
@@ -69,5 +76,5 @@ export async function tokenFetcher<T>(path: string, options: FetcherOptions = {}
 		throw new Error(`Request failed with status ${response.status}`);
 	}
 
-	return (await response.json()) as T;
+	return (await response.json()) as ApiResponse<T>;
 }
