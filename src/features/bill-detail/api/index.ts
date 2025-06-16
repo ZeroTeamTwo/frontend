@@ -1,6 +1,7 @@
 import { BillStatus } from '@/shared/const/bill';
 import { CommitteeName } from '@/shared/const/committee';
 import { BillReaction } from '../const';
+import { tokenFetcher } from '@/shared/api/fetcher';
 
 //TODO: api나오면 수정
 export interface BillDetalProps {
@@ -32,7 +33,7 @@ export interface BillDetalProps {
 	myReaction: BillReaction | null;
 }
 
-export const getBillDetail = (id: string): BillDetalProps => {
+const dummy = (id: string): BillDetalProps => {
 	return {
 		id,
 		title: '초등학생 코딩 교육 의무화 법안',
@@ -51,4 +52,14 @@ export const getBillDetail = (id: string): BillDetalProps => {
 		reactions: [100, 200, 100, 50],
 		myReaction: null,
 	};
+};
+
+export const getBillDetail = async (id: string): Promise<BillDetalProps> => {
+	try {
+		const response = await tokenFetcher(`/api/bills/${id}`);
+		console.log(response);
+		return dummy(id);
+	} catch (err) {
+		throw err;
+	}
 };

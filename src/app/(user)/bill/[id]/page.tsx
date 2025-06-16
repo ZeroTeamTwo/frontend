@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = await params;
-	const data = getBillDetail(id);
+	const data = await getBillDetail(id);
 	return (
 		<div className="flex flex-col items-center p-5 pb-[100px]  desktop:pt-12 desktop:pb-[160px] w-full">
 			<article className="flex flex-col items-center w-full max-w-desktop gap-6 desktop:gap-9">
