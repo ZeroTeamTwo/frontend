@@ -20,10 +20,10 @@ export default function GlobalError({ error, reset }: { error: Error & { digest?
 						<div className="w-[185px] desktop:w-[300px]">
 							<Image
 								src="/images/error.png"
-								alt="not-found"
+								alt="error-found"
 								width={300}
 								height={415}
-								sizes="100vw"
+								draggable={false}
 								style={{
 									width: '100%',
 									height: 'auto',

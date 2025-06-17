@@ -23,7 +23,7 @@ const Header = () => {
 						<SolidBtn label="로그인" size="small" />
 					</Link>
 					<Link href="/mobile-link" className="desktop:hidden cursor-pointer">
-						<Image src="/svgs/menu.svg" alt="네비바 열기" width={24} height={24} />
+						<Image src="/svgs/menu.svg" alt="네비바 열기" width={24} height={24} draggable={false} />
 					</Link>
 				</div>
 			</div>

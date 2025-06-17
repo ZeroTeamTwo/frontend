@@ -6,7 +6,15 @@ export default function NotFound() {
 	return (
 		<div className="mx-auto flex flex-col items-center px-6 py-8 gap-6 desktop:py-12">
 			<div className="relative w-[185px] desktop:w-[300px] aspect-[300/415]">
-				<Image src="/images/oops.png" alt="not-found" fill sizes="(min-width: 960px) 300px, 185px" priority className="object-contain" />
+				<Image
+					src="/images/oops.png"
+					alt="not-found"
+					draggable={false}
+					fill
+					sizes="(min-width: 960px) 300px, 185px"
+					priority
+					className="object-contain"
+				/>
 			</div>
 
 			<div className="flex flex-col items-center gap-3">
