@@ -11,3 +11,10 @@ export class ServerError extends Error {
 		this.name = 'ServerError';
 	}
 }
+
+export class NeedLoginError extends Error {
+	constructor() {
+		super('Need Login');
+		this.name = 'NeedLoginError';
+	}
+}
