@@ -94,7 +94,7 @@ const IssueCard = ({
 				<button
 					className="py-0.5"
 					onClick={(e) => {
-						e.stopPropagation(); // Link로의 클릭 전파 방지
+						e.stopPropagation();
 						setIsChecked((prev) => !prev);
 					}}
 				>
