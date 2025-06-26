@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { CLIENT_NAVI_PATH } from '../const/url';
 import { useState } from 'react';
 import BookmarkIcon from '../icon/Bookmark';
+import { toggleScrapped } from '../api/bill';
 
 export interface IssueCardProps {
 	/**이슈 아이디 */
@@ -95,6 +96,7 @@ const IssueCard = ({
 					className="py-0.5"
 					onClick={(e) => {
 						e.stopPropagation();
+						toggleScrapped(billId);
 						setIsChecked((prev) => !prev);
 					}}
 				>
