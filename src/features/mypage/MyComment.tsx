@@ -6,7 +6,7 @@ import HeartIcon from '@/shared/icon/Heart';
 import TagIcon from '@/shared/icon/Tag';
 
 const MyComment = () => {
-	const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery({
+	const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
 		queryKey: ['comments'],
 		queryFn: ({ pageParam }) => getMyComments({ page: pageParam }),
 		initialPageParam: 0,
@@ -21,7 +21,6 @@ const MyComment = () => {
 	const sensorRef = useRef(null);
 	const isInView = useInView(sensorRef);
 
-	console.log(isFetching, isFetchingNextPage, '패칭, 패넥');
 	useEffect(() => {
 		if (!isFetching && hasNextPage && isInView) {
 			fetchNextPage();
@@ -48,16 +47,16 @@ const MyComment = () => {
 					{index !== flatComments.length - 1 && <div className="h-px bg-line-normal w-full" />}
 				</Fragment>
 			))}
-			{hasNextPage && (
-				<div className="flex items-center justify-center w-full">
+
+			<div ref={sensorRef} className="flex items-center justify-center w-full">
+				{hasNextPage && (
 					<div
-						ref={sensorRef}
-						className="w-6 h-6 border-2 border-t-tr border-inverse-primary-main rounded-full animate-spin"
+						className="w-6 h-6 border-2 border-t-transparent border-inverse-primary-main rounded-full animate-spin"
 						role="status"
 						aria-label="로딩 중"
 					/>
-				</div>
-			)}
+				)}
+			</div>
 		</div>
 	);
 };

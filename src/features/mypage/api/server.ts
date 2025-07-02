@@ -10,9 +10,10 @@ import { IssueCardProps } from '@/shared/components/IssueCard';
 import { BillReaction } from '@/features/bill-detail/const';
 
 type MyProfileInfoResponse = { status: 'success'; result: MyProfileInfo } | { status: 'relogin' };
-interface MyReactions {
-	aiTitle: '해산물 수입을 위한 새로운 법두';
-	billId: 101;
+
+export interface MyReactions {
+	aiTitle: string;
+	billId: number;
 	reactionType: BillReaction;
 	date: string;
 }
