@@ -5,20 +5,14 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-
 import { BillReaction, REACTION_ICON_MAP } from './const';
 import ShareButton from '@/shared/components/ShareBtn';
 import BookmarkBtn from './BookmarkBtn';
+import { useReactionInfo } from './hooks/useReactionInfo';
 
-// TODO: { reactions, myReaction: initialMyReaction }: Pick<BillDetalProps, 'reactions' | 'myReaction'>
-// reactions: [number, number, number, number];
-// myReaction: BillReaction | null;
 const DetailInteraction = ({ id, isScrapped }: { id: string; isScrapped: boolean }) => {
+	const { reactionCounts, myReaction, setMyReaction, setReactionCounts } = useReactionInfo(id);
+
 	const targetRef = useRef<HTMLDivElement>(null);
 	const [visible, setVisible] = useState(true);
 	const { scrollY } = useScroll();
-
-	const reactions = [100, 200, 100, 50];
-	const initialMyReaction = null;
-
-	const [myReaction, setMyReaction] = useState<BillReaction | null>(initialMyReaction);
-	const [reactionCounts, setReactionCounts] = useState([...reactions]);
 
 	useMotionValueEvent(scrollY, 'change', () => {
 		const rect = targetRef.current?.getBoundingClientRect();
@@ -33,7 +27,7 @@ const DetailInteraction = ({ id, isScrapped }: { id: string; isScrapped: boolean
 
 	const handleClick = (index: number) => {
 		const selectedLabel = REACTION_ICON_MAP[index].label;
-		const updated = [...reactionCounts];
+		const updated: [number, number, number, number] = [...reactionCounts];
 
 		if (myReaction === selectedLabel) {
 			updated[index] -= 1;

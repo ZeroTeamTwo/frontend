@@ -1,6 +1,7 @@
 import { BillStatus } from '@/shared/const/bill';
 import { CommitteeName } from '@/shared/const/committee';
 import { tokenFetcher } from '@/shared/api/fetcher';
+import { BillReaction } from '../const';
 
 export interface BillHistory {
 	id: number;
@@ -8,6 +9,14 @@ export interface BillHistory {
 	stepName: string;
 	stepResult: string;
 	stepDate: string; // ISO 8601 (YYYY-MM-DD)
+}
+
+export interface ReactionCounts {
+	excitedReactionCount: number;
+	improvementReactionCount: number;
+	disappointedReactionCount: number;
+	likeReactionCount: number;
+	userReactionType: BillReaction | null;
 }
 
 export interface BillDetalProps {
@@ -47,3 +56,8 @@ export const getBillDetail = async (id: string): Promise<BillDetalProps> => {
 		throw err;
 	}
 };
+
+export async function getMyReactions(id: string) {
+	const response = await tokenFetcher<ReactionCounts>(`/api/bills/${id}/reactions`);
+	return { result: response.result };
+}
