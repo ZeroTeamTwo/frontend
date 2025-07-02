@@ -9,6 +9,7 @@ import { BillReaction, REACTION_EMOJI } from '../bill-detail/const';
 import TagIcon from '@/shared/icon/Tag';
 import Link from 'next/link';
 import { CLIENT_NAVI_PATH } from '@/shared/const/url';
+import EmptyData from './EmptyData';
 
 const MyOpinion = () => {
 	const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
@@ -38,6 +39,10 @@ const MyOpinion = () => {
 			fetchNextPage();
 		}
 	}, [fetchNextPage, hasNextPage, isFetching, isInView]);
+
+	if (data?.pages?.length === 1 && data.pages[0].result.content.length === 0) {
+		return <EmptyData category="의견" />;
+	}
 
 	const dataGroupedByDate = groupReactionByDate(data);
 

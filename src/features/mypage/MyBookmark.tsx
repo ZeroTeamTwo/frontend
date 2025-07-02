@@ -5,6 +5,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import React, { useEffect, useRef } from 'react';
 import { getMyBookmarks } from './api/server';
 import { useInView } from 'framer-motion';
+import EmptyData from './EmptyData';
 
 const MyBookmark = () => {
 	//TODO: 에러처리?
@@ -28,6 +29,10 @@ const MyBookmark = () => {
 			fetchNextPage();
 		}
 	}, [fetchNextPage, hasNextPage, isFetching, isInView]);
+
+	if (data?.pages?.length === 1 && data.pages[0].result.content.length === 0) {
+		return <EmptyData category="북마크" />;
+	}
 
 	return (
 		<>

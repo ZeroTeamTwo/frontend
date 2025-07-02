@@ -4,6 +4,7 @@ import React, { Fragment, useEffect, useRef } from 'react';
 import { getMyComments } from './api/server';
 import HeartIcon from '@/shared/icon/Heart';
 import TagIcon from '@/shared/icon/Tag';
+import EmptyData from './EmptyData';
 
 const MyComment = () => {
 	const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
@@ -27,7 +28,12 @@ const MyComment = () => {
 		}
 	}, [fetchNextPage, hasNextPage, isFetching, isInView]);
 
+	if (data?.pages?.length === 1 && data.pages[0].result.content.length === 0) {
+		return <EmptyData category="댓글" />;
+	}
+
 	const flatComments = data?.pages.flatMap((page) => page.result.content) ?? [];
+
 	return (
 		<div className="flex flex-col w-full gap-5 px-6 py-5 bg-white rounded-[12px]">
 			{flatComments.map((comment, index) => (
