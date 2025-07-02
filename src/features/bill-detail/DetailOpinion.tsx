@@ -1,55 +1,16 @@
 'use client';
 
-import { Fragment, useRef, useState } from 'react';
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
+import { Fragment } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { BillReaction, REACTION_ICON_MAP } from './const';
 import ShareButton from '@/shared/components/ShareBtn';
 import BookmarkBtn from './BookmarkBtn';
 import { useReactionInfo } from './hooks/useReactionInfo';
+import { useReactionVisble } from './hooks/useReactionVisible';
 
-const DetailInteraction = ({ id, isScrapped }: { id: string; isScrapped: boolean }) => {
-	const { reactionCounts, myReaction, setMyReaction, setReactionCounts } = useReactionInfo(id);
-
-	const targetRef = useRef<HTMLDivElement>(null);
-	const [visible, setVisible] = useState(true);
-	const { scrollY } = useScroll();
-
-	useMotionValueEvent(scrollY, 'change', () => {
-		const rect = targetRef.current?.getBoundingClientRect();
-		if (!rect) return;
-		const isIntersecting = rect.top < window.innerHeight;
-		const nextVisible = !isIntersecting;
-
-		if (nextVisible !== visible) {
-			setVisible(nextVisible);
-		}
-	});
-
-	const handleClick = (index: number) => {
-		const selectedLabel = REACTION_ICON_MAP[index].label;
-		const updated: [number, number, number, number] = [...reactionCounts];
-
-		if (myReaction === selectedLabel) {
-			updated[index] -= 1;
-			setReactionCounts(updated);
-			setMyReaction(null);
-			return;
-		}
-
-		updated[index] += 1;
-
-		if (myReaction !== null) {
-			const prevIndex = REACTION_ICON_MAP.findIndex((item) => item.label === myReaction);
-			if (prevIndex !== -1) {
-				updated[prevIndex] = Math.max(0, updated[prevIndex] - 1);
-			}
-		}
-
-		setReactionCounts(updated);
-		setMyReaction(selectedLabel);
-
-		// TODO: 서버 전송 로직 추가
-	};
+const DetailOpinion = ({ id, isScrapped }: { id: string; isScrapped: boolean }) => {
+	const { reactionCounts, myReaction, updateReaction } = useReactionInfo(id);
+	const { targetRef, visible } = useReactionVisble();
 
 	return (
 		<>
@@ -66,7 +27,7 @@ const DetailInteraction = ({ id, isScrapped }: { id: string; isScrapped: boolean
 								const isSelected = myReaction === label;
 								return (
 									<Fragment key={label}>
-										<EmojiBtn label={label} emoji={emoji} isSelected={isSelected} clickFn={() => handleClick(i)} count={count} />
+										<EmojiBtn label={label} emoji={emoji} isSelected={isSelected} clickFn={() => updateReaction(i)} count={count} />
 										{i < reactionCounts.length - 1 && <div className="h-5 border border-line-neutral " />}
 									</Fragment>
 								);
@@ -95,7 +56,7 @@ const DetailInteraction = ({ id, isScrapped }: { id: string; isScrapped: boolean
 						{reactionCounts.map((count, i) => {
 							const { label, emoji } = REACTION_ICON_MAP[i];
 							const isSelected = myReaction === label;
-							return <EmojiBtn key={label} label={label} emoji={emoji} isSelected={isSelected} clickFn={() => handleClick(i)} count={count} />;
+							return <EmojiBtn key={label} label={label} emoji={emoji} isSelected={isSelected} clickFn={() => updateReaction(i)} count={count} />;
 						})}
 					</motion.aside>
 				)}
@@ -104,7 +65,7 @@ const DetailInteraction = ({ id, isScrapped }: { id: string; isScrapped: boolean
 	);
 };
 
-export default DetailInteraction;
+export default DetailOpinion;
 
 interface EmojiBtnProps {
 	label: BillReaction;
