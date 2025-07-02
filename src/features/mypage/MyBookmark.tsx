@@ -2,10 +2,9 @@
 
 import IssueCard from '@/shared/components/IssueCard';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import React, { useEffect, useRef } from 'react';
 import { getMyBookmarks } from './api/server';
-import { useInView } from 'framer-motion';
 import EmptyData from './EmptyData';
+import { useInfinityScrollSensor } from '@/shared/hooks/useInfinityScrollSensor';
 
 const MyBookmark = () => {
 	//TODO: 에러처리?
@@ -21,14 +20,7 @@ const MyBookmark = () => {
 		},
 	});
 
-	const sensorRef = useRef(null);
-	const isInView = useInView(sensorRef);
-
-	useEffect(() => {
-		if (!isFetching && hasNextPage && isInView) {
-			fetchNextPage();
-		}
-	}, [fetchNextPage, hasNextPage, isFetching, isInView]);
+	const { sensorRef } = useInfinityScrollSensor({ isFetching, hasNextPage, fetchNextPage });
 
 	if (data?.pages?.length === 1 && data.pages[0].result.content.length === 0) {
 		return <EmptyData category="북마크" />;
