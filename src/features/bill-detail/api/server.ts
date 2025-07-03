@@ -3,6 +3,7 @@ import { CommitteeName } from '@/shared/const/committee';
 import { tokenFetcher } from '@/shared/api/fetcher';
 import { BillReaction } from '../const';
 import { NeedLoginError, RefreshTokenError } from '@/shared/const/error';
+import { CommentType } from '@/shared/components/Comment';
 
 export interface BillHistory {
 	id: number;
@@ -48,6 +49,11 @@ export interface BillDetalProps {
 	history: BillHistory[];
 }
 
+export interface BillResponse {
+	totalcount: number;
+	comments: { content: CommentType[]; pageNumber: number; last: boolean };
+}
+
 export const getBillDetail = async (id: string): Promise<BillDetalProps> => {
 	try {
 		const response = await tokenFetcher<BillDetalProps>(`/api/bills/${id}`);
@@ -85,3 +91,9 @@ export const postMyReaction = async (id: string, reactionType: BillReaction) => 
 		return { status: 'SERVER_ERROR' };
 	}
 };
+
+export async function getBillComments({ id, page = 0, size = 16 }: { id: number | string; page: number; size?: number }) {
+	const response = await tokenFetcher<BillResponse>(`/api/bills/${id}/comments?page=0&page=${page}&size=${size}`);
+
+	return { result: response.result };
+}
