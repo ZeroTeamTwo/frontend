@@ -1,13 +1,10 @@
-import React from 'react';
-import PageNation from './PageNation';
+'use client';
+
+import { useBillQueryState } from './hooks/useBillQueryState';
 
 const BillContents = () => {
-	return (
-		<div>
-			BillContents
-			<PageNation />
-		</div>
-	);
+	useBillQueryState();
+	return <div>BillContents</div>;
 };
 
 export default BillContents;
