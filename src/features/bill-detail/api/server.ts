@@ -3,7 +3,7 @@ import { CommitteeName } from '@/shared/const/committee';
 import { tokenFetcher } from '@/shared/api/fetcher';
 import { BillReaction } from '../const';
 import { NeedLoginError, RefreshTokenError } from '@/shared/const/error';
-import { CommentType } from '@/shared/components/Comment';
+import { CommentResponse } from '@/shared/components/Comment';
 
 export interface BillHistory {
 	id: number;
@@ -51,7 +51,7 @@ export interface BillDetalProps {
 
 export interface BillComments {
 	totalcount: number;
-	comments: { content: Omit<CommentType, 'isWriter'>[]; pageNumber: number; last: boolean };
+	comments: { content: CommentResponse[]; pageNumber: number; last: boolean };
 }
 
 export const getBillDetail = async (id: string): Promise<BillDetalProps> => {
@@ -100,4 +100,8 @@ export const getBillComments = async ({ id, page = 0, size = 16 }: { id: number 
 
 export const addBillComment = async (id: number | string, content: string) => {
 	await tokenFetcher(`/api/bills/${id}/comments`, { method: 'POST', body: JSON.stringify({ content }) });
+};
+
+export const deleteBillComment = async (id: number | string) => {
+	await tokenFetcher(`/api/comments/${id}`, { method: 'DELETE' });
 };

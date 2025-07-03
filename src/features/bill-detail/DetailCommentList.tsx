@@ -7,6 +7,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { getBillComments } from './api/server';
 import { useInfinityScrollSensor } from '@/shared/hooks/useInfinityScrollSensor';
 import { QUERY_KEYS } from '@/shared/const/reactQuery';
+import { useBillComment } from './hooks/useBillComment';
 
 interface CommentListType {
 	billId: string | number;
@@ -29,7 +30,7 @@ const DetailCommentList = ({ billId, nickname }: CommentListType) => {
 	});
 
 	const { sensorRef } = useInfinityScrollSensor({ isFetching, hasNextPage, fetchNextPage });
-
+	const { deleteComment } = useBillComment();
 	const commentList = data?.pages.flatMap((page) => page.result.comments.content) ?? [];
 
 	return (
@@ -40,9 +41,18 @@ const DetailCommentList = ({ billId, nickname }: CommentListType) => {
 			<AddComment id={billId} />
 			<ul className="flex flex-col gap-[15px] desktop:gap-5">
 				{commentList.map((comment) => {
-					console.log(comment);
-
-					return <Comment key={comment.commentId} {...comment} isWriter={comment.nickname === nickname} />;
+					return (
+						<Comment
+							key={comment.commentId}
+							{...comment}
+							isWriter={comment.nickname === nickname}
+							editFn={() => {}}
+							reportFn={() => {}}
+							deleteFn={() => {
+								deleteComment.mutate({ id: comment.commentId });
+							}}
+						/>
+					);
 				})}
 				<div ref={sensorRef} className="flex items-center justify-center w-full">
 					{hasNextPage && (

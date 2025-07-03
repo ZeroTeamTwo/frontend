@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import HeartIcon from '../icon/Heart';
 
-export interface CommentType {
+export interface CommentResponse {
 	/** 댓글 고유 ID (map의 key 등으로 사용) */
 	commentId: number;
 	/** 작성자 프로필 이미지 URL */
@@ -19,15 +19,32 @@ export interface CommentType {
 	/** 현재 사용자가 좋아요를 눌렀는지 여부 */
 	isLiked: boolean;
 	/** 본인이 작성자인지*/
+}
+
+export interface CommentType extends CommentResponse {
+	/** 본인이 작성자인지*/
 	isWriter: boolean;
+	/** 댓글 수정 함수 */
+	editFn: () => void;
+	/** 댓글 삭제 함수 */
+	deleteFn: () => void;
+	/** 댓글 신고 함수 */
+	reportFn: () => void;
 }
 
 /**
  * 개별 댓글 컴퍼넌트
  *  시맨틱한 태그 사용을 위해 li태그 사용. 배열 래퍼 하위에서 map 돌려야 합니다.
  */
-const Comment = ({ profileImage, nickname, daysAgo, isEdited, content, likeCount, isLiked, isWriter }: CommentType) => {
+const Comment = ({ profileImage, nickname, daysAgo, isEdited, content, likeCount, isLiked, isWriter, deleteFn }: CommentType) => {
 	// TODO: id 및 로직
+	const handleDelete = () => {
+		const confirmed = window.confirm('정말 댓글을 삭제하시겠습니까?');
+		if (confirmed) {
+			deleteFn();
+		}
+	};
+
 	return (
 		<li className="flex w-full pr-1 pb-2 gap-3 desktop:pr-0 desktop:gap-4.5">
 			<Image
@@ -55,7 +72,7 @@ const Comment = ({ profileImage, nickname, daysAgo, isEdited, content, likeCount
 						{isWriter ? (
 							<>
 								<button>수정하기</button>
-								<button>삭제하기</button>
+								<button onClick={handleDelete}>삭제하기</button>
 							</>
 						) : (
 							<button>신고하기</button>

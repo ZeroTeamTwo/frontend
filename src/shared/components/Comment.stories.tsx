@@ -24,6 +24,15 @@ const defaultProps: CommentType = {
 	likeCount: 5,
 	isLiked: true,
 	isWriter: true,
+	editFn: () => {
+		console.log('댓글 수정');
+	},
+	deleteFn: () => {
+		console.log('댓글 삭제');
+	},
+	reportFn: () => {
+		console.log('댓글 신고');
+	},
 };
 
 export const Default: Story = {
