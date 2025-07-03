@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import { BillReaction, REACTION_ICON_MAP } from '../const';
-import { getMyReactions } from '../api/server';
+import { getBillReactions, postMyReaction } from '../api/server';
+import { useRouter } from 'next/navigation';
 
 export const useReactionInfo = (id: string) => {
 	// 좋아요, 개선필요, 흥미진진, 아쉬워요
 	const [reactionCounts, setReactionCounts] = useState<[number, number, number, number]>([0, 0, 0, 0]);
 	const [myReaction, setMyReaction] = useState<BillReaction | null>(null);
+	const router = useRouter();
 
 	useEffect(() => {
 		const fetchReactionInfo = async () => {
-			const { result } = await getMyReactions(id);
+			const { result } = await getBillReactions(id);
 			setReactionCounts([result.likeReactionCount, result.improvementReactionCount, result.excitedReactionCount, result.disappointedReactionCount]);
 			setMyReaction(result.userReactionType);
 		};
@@ -17,9 +19,23 @@ export const useReactionInfo = (id: string) => {
 		fetchReactionInfo();
 	}, [id]);
 
-	const updateReaction = (index: number) => {
+	const updateReaction = async (index: number) => {
 		const selectedLabel = REACTION_ICON_MAP[index].label;
 		const updated: [number, number, number, number] = [...reactionCounts];
+
+		const { status } = await postMyReaction(id, selectedLabel);
+
+		switch (status) {
+			case 'SUCCESS':
+				break;
+			case 'RELOGIN':
+				return router.push('/modal-login');
+			case 'REFRESH':
+				alert('로그인이 만료되었습니다. 로그인 후 다시 시도해주세요.');
+				return router.push('/modal-login');
+			default:
+				return alert('알 수 없는 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+		}
 
 		if (myReaction === selectedLabel) {
 			updated[index] -= 1;
@@ -33,14 +49,12 @@ export const useReactionInfo = (id: string) => {
 		if (myReaction !== null) {
 			const prevIndex = REACTION_ICON_MAP.findIndex((item) => item.label === myReaction);
 			if (prevIndex !== -1) {
-				updated[prevIndex] = Math.max(0, updated[prevIndex] - 1);
+				updated[prevIndex] -= 1;
 			}
 		}
 
 		setReactionCounts(updated);
 		setMyReaction(selectedLabel);
-
-		// TODO: 서버 전송 로직 추가
 	};
 
 	return { reactionCounts, myReaction, setMyReaction, setReactionCounts, updateReaction };

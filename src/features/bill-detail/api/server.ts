@@ -2,6 +2,7 @@ import { BillStatus } from '@/shared/const/bill';
 import { CommitteeName } from '@/shared/const/committee';
 import { tokenFetcher } from '@/shared/api/fetcher';
 import { BillReaction } from '../const';
+import { NeedLoginError, RefreshTokenError } from '@/shared/const/error';
 
 export interface BillHistory {
 	id: number;
@@ -57,7 +58,30 @@ export const getBillDetail = async (id: string): Promise<BillDetalProps> => {
 	}
 };
 
-export async function getMyReactions(id: string) {
+export const getBillReactions = async (id: string) => {
 	const response = await tokenFetcher<ReactionCounts>(`/api/bills/${id}/reactions`);
 	return { result: response.result };
-}
+};
+
+export const postMyReaction = async (id: string, reactionType: BillReaction) => {
+	try {
+		await tokenFetcher<{
+			hasReacted: boolean;
+			reactionType: string;
+		}>(`/api/bills/${id}/reactions`, {
+			method: 'POST',
+			body: JSON.stringify({ reactionType }),
+		});
+		return { status: 'SUCCESS' };
+	} catch (err) {
+		if (err instanceof NeedLoginError) {
+			return { status: 'RELOGIN' };
+		}
+
+		if (err instanceof RefreshTokenError) {
+			return { status: 'REFRESH' };
+		}
+
+		return { status: 'SERVER_ERROR' };
+	}
+};
