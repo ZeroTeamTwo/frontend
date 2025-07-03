@@ -5,6 +5,7 @@ import { SolidBtn } from '@/shared/components/SolidBtn';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { addBillComment } from './api/server';
+import { QUERY_KEYS } from '@/shared/const/reactQuery';
 
 const AddComment = ({ id }: { id: number | string }) => {
 	const queryClient = useQueryClient();
@@ -12,7 +13,7 @@ const AddComment = ({ id }: { id: number | string }) => {
 	const addNewComment = useMutation({
 		mutationFn: ({ id, content }: { id: number | string; content: string }) => addBillComment(id, content),
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ['billComments'] });
+			queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.billComments] });
 			setComment('');
 		},
 		onError: () => {

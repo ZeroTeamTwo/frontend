@@ -6,6 +6,7 @@ import AddComment from './AddComment';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getBillComments } from './api/server';
 import { useInfinityScrollSensor } from '@/shared/hooks/useInfinityScrollSensor';
+import { QUERY_KEYS } from '@/shared/const/reactQuery';
 
 interface CommentListType {
 	billId: string | number;
@@ -14,7 +15,7 @@ interface CommentListType {
 
 const DetailCommentList = ({ billId, nickname }: CommentListType) => {
 	const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
-		queryKey: ['billComments'],
+		queryKey: [QUERY_KEYS.billComments],
 		queryFn: ({ pageParam }) => getBillComments({ id: billId, page: pageParam }),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage) => {
@@ -23,6 +24,8 @@ const DetailCommentList = ({ billId, nickname }: CommentListType) => {
 			}
 			return undefined;
 		},
+		gcTime: 60 * 1000,
+		staleTime: 50 * 1000,
 	});
 
 	const { sensorRef } = useInfinityScrollSensor({ isFetching, hasNextPage, fetchNextPage });
