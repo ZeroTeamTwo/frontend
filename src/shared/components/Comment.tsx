@@ -19,13 +19,14 @@ export interface CommentType {
 	/** 현재 사용자가 좋아요를 눌렀는지 여부 */
 	isLiked: boolean;
 	/** 본인이 작성자인지*/
+	isWriter: boolean;
 }
 
 /**
  * 개별 댓글 컴퍼넌트
  *  시맨틱한 태그 사용을 위해 li태그 사용. 배열 래퍼 하위에서 map 돌려야 합니다.
  */
-const Comment = ({ profileImage, nickname, daysAgo, isEdited, content, likeCount, isLiked, isWriter }: CommentType & { isWriter: boolean }) => {
+const Comment = ({ profileImage, nickname, daysAgo, isEdited, content, likeCount, isLiked, isWriter }: CommentType) => {
 	// TODO: id 및 로직
 	return (
 		<li className="flex w-full pr-1 pb-2 gap-3 desktop:pr-0 desktop:gap-4.5">

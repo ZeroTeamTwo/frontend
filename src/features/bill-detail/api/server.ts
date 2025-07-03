@@ -49,9 +49,9 @@ export interface BillDetalProps {
 	history: BillHistory[];
 }
 
-export interface BillResponse {
+export interface BillComments {
 	totalcount: number;
-	comments: { content: CommentType[]; pageNumber: number; last: boolean };
+	comments: { content: Omit<CommentType, 'isWriter'>[]; pageNumber: number; last: boolean };
 }
 
 export const getBillDetail = async (id: string): Promise<BillDetalProps> => {
@@ -93,13 +93,11 @@ export const postMyReaction = async (id: string, reactionType: BillReaction) => 
 };
 
 export const getBillComments = async ({ id, page = 0, size = 16 }: { id: number | string; page: number; size?: number }) => {
-	const response = await tokenFetcher<BillResponse>(`/api/bills/${id}/comments?page=0&page=${page}&size=${size}`);
+	const response = await tokenFetcher<BillComments>(`/api/bills/${id}/comments?page=0&page=${page}&size=${size}`);
 
 	return { result: response.result };
 };
 
 export const addBillComment = async (id: number | string, content: string) => {
-	const response = await tokenFetcher<BillResponse>(`/api/bills/${id}/comments`, { method: 'POST', body: JSON.stringify({ content }) });
-
-	return { result: response.result };
+	await tokenFetcher(`/api/bills/${id}/comments`, { method: 'POST', body: JSON.stringify({ content }) });
 };
