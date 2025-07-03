@@ -34,7 +34,7 @@ const DetailCommentList = ({ billId, nickname }: CommentListType) => {
 			<header className="flex typo-heading2 font-bold text-label-normal desktop:typo-heading1 gap-2">
 				댓글 <p className="typo-heading2 desktop:typo-heading1 text-label-alternative">{commentList.length}</p>
 			</header>
-			<AddComment />
+			<AddComment id={billId} />
 			<ul className="flex flex-col gap-[15px] desktop:gap-5">
 				{commentList.map((comment) => {
 					console.log(comment);
