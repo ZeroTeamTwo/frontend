@@ -1,6 +1,6 @@
 import { QUERY_KEYS } from '@/shared/const/reactQuery';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteBillComment } from '../api/server';
+import { deleteBillComment, editBillComment } from '../api/server';
 
 export const useBillComment = () => {
 	const queryClient = useQueryClient();
@@ -14,5 +14,15 @@ export const useBillComment = () => {
 		},
 	});
 
-	return { deleteComment };
+	const editComment = useMutation({
+		mutationFn: ({ id, content }: { id: number | string; content: string }) => editBillComment(id, content),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.billComments] });
+		},
+		onError: () => {
+			alert('댓글 수정에 실패했습니다. 다시 시도해주세요.');
+		},
+	});
+
+	return { deleteComment, editComment };
 };
