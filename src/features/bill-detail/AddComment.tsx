@@ -16,7 +16,7 @@ const AddComment = ({ id }: { id: number | string }) => {
 	const addNewComment = useMutation({
 		mutationFn: ({ id, content }: { id: number | string; content: string }) => addBillComment(id, content),
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.billComments] });
+			queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.billComments, id] });
 			setComment('');
 		},
 		onError: (err) => {
