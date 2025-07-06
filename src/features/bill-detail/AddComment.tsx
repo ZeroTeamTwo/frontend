@@ -6,12 +6,12 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { addBillComment } from './api/server';
 import { QUERY_KEYS } from '@/shared/const/reactQuery';
-import { useRouter } from 'next/navigation';
+import { useHandleError } from '@/shared/hooks/useHandleError';
 
 const AddComment = ({ id }: { id: number | string }) => {
 	const queryClient = useQueryClient();
 	const [comment, setComment] = useState<string>('');
-	const router = useRouter();
+	const { handleErrorByName } = useHandleError();
 
 	const addNewComment = useMutation({
 		mutationFn: ({ id, content }: { id: number | string; content: string }) => addBillComment(id, content),
@@ -20,14 +20,7 @@ const AddComment = ({ id }: { id: number | string }) => {
 			setComment('');
 		},
 		onError: (err) => {
-			if (err.name === 'NeedLoginError') {
-				router.push('/modal-login');
-			} else if (err.name === 'RefreshTokenError') {
-				alert('세션이 만료되었습니다. 다시 로그인해주세요.');
-				router.push('/modal-login');
-			} else {
-				alert('댓글 작성에 실패했습니다. 잠시 후 다시 시도해주세요.');
-			}
+			handleErrorByName(err, '댓글 작성');
 		},
 	});
 

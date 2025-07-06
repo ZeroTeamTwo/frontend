@@ -1,16 +1,18 @@
 import { QUERY_KEYS } from '@/shared/const/reactQuery';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteBillComment, editBillComment, likeBillComment } from '../api/server';
+import { useHandleError } from '@/shared/hooks/useHandleError';
 
 export const useBillComment = () => {
 	const queryClient = useQueryClient();
+	const { handleErrorByName } = useHandleError();
 	const deleteComment = useMutation({
 		mutationFn: ({ id }: { id: number | string }) => deleteBillComment(id),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.billComments] });
 		},
-		onError: () => {
-			alert('댓글 삭제에 실패했습니다. 다시 시도해주세요.');
+		onError: (err) => {
+			handleErrorByName(err, '댓글 삭제');
 		},
 	});
 
@@ -19,8 +21,8 @@ export const useBillComment = () => {
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.billComments] });
 		},
-		onError: () => {
-			alert('댓글 수정에 실패했습니다. 다시 시도해주세요.');
+		onError: (err) => {
+			handleErrorByName(err, '댓글 수정');
 		},
 	});
 
@@ -29,8 +31,8 @@ export const useBillComment = () => {
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.billComments] });
 		},
-		onError: () => {
-			alert('댓글 좋아요에 실패했습니다. 다시 시도해주세요.');
+		onError: (err) => {
+			handleErrorByName(err, '댓글 좋아요');
 		},
 	});
 
