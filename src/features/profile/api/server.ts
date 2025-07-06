@@ -14,8 +14,8 @@ export async function uploadProfileImg(formData: FormData) {
 	}
 
 	try {
-		const response = await tokenFetcher<string>('/app/api/image', {
-			method: 'POST',
+		const response = await tokenFetcher<string>('/api/users/me/profile-image', {
+			method: 'PATCH',
 			body: formData,
 			cache: 'no-store',
 		});

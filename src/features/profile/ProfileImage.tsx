@@ -31,7 +31,7 @@ const ProfileImage = ({ img }: ProfileImageProps) => {
 		setStatus('uploading');
 
 		const formData = new FormData();
-		formData.append('file', file);
+		formData.append('profileImage', file);
 
 		const result = await uploadProfileImg(formData);
 
@@ -58,7 +58,7 @@ const ProfileImage = ({ img }: ProfileImageProps) => {
 				{/* eslint-disable-next-line @next/next/no-img-element */}
 				<img src={preview} alt="프로필 이미지" className="w-full h-full object-cover" />
 			</label>
-			<input id="file" type="file" accept="image/*" onChange={handleChange} className="hidden" />
+			<input id="file" type="file" accept="image/jpeg, image/png" onChange={handleChange} className="hidden" />
 			<button
 				className="typo-label2 font-bold border-1 px-[14px] py-[7px] rounded-[8px] border-primary-main-normal text-primary-main-normal hover:opacity-85"
 				onClick={handleUpload}
