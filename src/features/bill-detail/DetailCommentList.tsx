@@ -30,7 +30,7 @@ const DetailCommentList = ({ billId, nickname }: CommentListType) => {
 	});
 
 	const { sensorRef } = useInfinityScrollSensor({ isFetching, hasNextPage, fetchNextPage });
-	const { deleteComment, editComment } = useBillComment();
+	const { deleteComment, editComment, likeComment } = useBillComment();
 	const commentList = data?.pages.flatMap((page) => page.result.comments.content) ?? [];
 
 	return (
@@ -53,7 +53,9 @@ const DetailCommentList = ({ billId, nickname }: CommentListType) => {
 							deleteFn={() => {
 								deleteComment.mutate({ id: comment.commentId });
 							}}
-							likeFn={() => {}}
+							likeFn={() => {
+								likeComment.mutate({ id: comment.commentId });
+							}}
 						/>
 					);
 				})}

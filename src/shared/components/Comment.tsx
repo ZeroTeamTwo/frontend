@@ -41,15 +41,17 @@ export interface CommentType extends CommentResponse {
  * 개별 댓글 컴퍼넌트
  *  시맨틱한 태그 사용을 위해 li태그 사용. 배열 래퍼 하위에서 map 돌려야 합니다.
  */
-const Comment = ({ profileImage, nickname, daysAgo, isEdited, content, likeCount, isLiked, isWriter, deleteFn, editFn }: CommentType) => {
+const Comment = ({ profileImage, nickname, daysAgo, isEdited, content, likeCount, isLiked, isWriter, deleteFn, editFn, likeFn }: CommentType) => {
 	const [isEditMode, setIsEditMode] = useState(false);
 	const [editedContent, setEditedContent] = useState(content);
+
 	const handleDelete = () => {
 		const confirmed = window.confirm('정말 댓글을 삭제하시겠습니까?');
 		if (confirmed) {
 			deleteFn();
 		}
 	};
+
 	const handleEdit = () => {
 		editFn(editedContent);
 		setIsEditMode(false);
@@ -88,7 +90,7 @@ const Comment = ({ profileImage, nickname, daysAgo, isEdited, content, likeCount
 				)}
 
 				<div className="flex w-full justify-between">
-					<button className={`flex items-center typo-label1-normal font-regular ${isLiked ? 'text-[#ff4242]' : ''}`}>
+					<button onClick={likeFn} className={`flex items-center typo-label1-normal font-regular ${isLiked ? 'text-[#ff4242]' : ''}`}>
 						<HeartIcon isLiked={isLiked} className="h-4 w-4 desktop:w-5 desktop:h-5" /> {likeCount}
 					</button>
 					<div className="flex typo-caption1 font-regular gap-2 desktop:typo-body2-normal">

@@ -93,7 +93,6 @@ export const postMyReaction = async (id: string, reactionType: BillReaction) => 
 
 export const getBillComments = async ({ id, page = 0, size = 16 }: { id: number | string; page: number; size?: number }) => {
 	const response = await tokenFetcher<BillComments>(`/api/bills/${id}/comments?page=0&page=${page}&size=${size}`);
-
 	return { result: response.result };
 };
 
@@ -107,4 +106,8 @@ export const deleteBillComment = async (id: number | string) => {
 
 export const editBillComment = async (id: number | string, content: string) => {
 	await tokenFetcher(`/api/comments/${id}`, { method: 'PATCH', body: JSON.stringify({ content }) });
+};
+
+export const likeBillComment = async (id: number | string) => {
+	await tokenFetcher(`/api/comments/${id}/likes/toggle`, { method: 'POST' });
 };
