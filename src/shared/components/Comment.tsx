@@ -64,8 +64,9 @@ const Comment = ({ profileImage, nickname, daysAgo, isEdited, content, likeCount
 				alt="프로필 이미지"
 				width={48}
 				height={48}
-				className="w-[32px] h-[32px] desktop:w-[48px] desktop:h-[48px] rounded-full"
+				className="w-[32px] h-[32px] desktop:w-[48px] desktop:h-[48px] rounded-full object-cover object-center border-1 border-line-normal"
 				draggable={false}
+				sizes="100vw"
 				priority
 			/>
 			<div className="flex flex-col flex-1 gap-2">
