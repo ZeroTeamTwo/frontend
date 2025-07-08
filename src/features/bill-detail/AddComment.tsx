@@ -1,9 +1,9 @@
 'use client';
 
 import { SolidBtn } from '@/shared/components/SolidBtn';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
-import { addBillComment } from './api/server';
+import { addBillComment, BillComments } from './api/server';
 import { QUERY_KEYS } from '@/shared/const/reactQuery';
 import { useHandleError } from '@/shared/hooks/useHandleError';
 
@@ -14,10 +14,31 @@ const AddComment = ({ id }: { id: number | string }) => {
 
 	const addNewComment = useMutation({
 		mutationFn: ({ id, content }: { id: number | string; content: string }) => addBillComment(id, content),
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.billComments, id] });
+		onSuccess: ({ result }) => {
+			queryClient.setQueryData<InfiniteData<{ result: BillComments }>>([QUERY_KEYS.billComments, id], (prev) => {
+				if (!prev) return prev;
+
+				const updatedPages = prev.pages.map((page, idx) =>
+					idx === 0
+						? {
+								...page,
+								result: {
+									...page.result,
+									comments: {
+										...page.result.comments,
+										content: [result, ...page.result.comments.content],
+									},
+								},
+							}
+						: page,
+				);
+
+				return { ...prev, pages: updatedPages };
+			});
+
 			setComment('');
 		},
+
 		onError: (err) => {
 			handleErrorByName(err, '댓글 작성');
 		},
