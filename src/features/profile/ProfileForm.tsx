@@ -10,6 +10,7 @@ import Nickname from '../onboarding/Nickname';
 import Keywords from '../onboarding/Keywords';
 import Link from 'next/link';
 import { CLIENT_NAVI_PATH } from '@/shared/const/url';
+import { areArraysEqualUnordered } from '@/shared/util';
 
 interface ProfileFormProps {
 	initialNick: string;
@@ -17,7 +18,7 @@ interface ProfileFormProps {
 }
 
 const ProfileForm = ({ initialNick, initailKeywords }: ProfileFormProps) => {
-	const [keywords, setKeywords] = useState<Keyword[]>(initailKeywords);
+	const [keywords, setKeywords] = useState<Keyword[]>([...initailKeywords]);
 	const [isValidateNick, setIsValidateNick] = useState<boolean>(false);
 	const canSumbit = keywords.length > 0 && isValidateNick;
 	const router = useRouter();
@@ -26,7 +27,7 @@ const ProfileForm = ({ initialNick, initailKeywords }: ProfileFormProps) => {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
 		const nickname = formData.get('nickname') as string;
-		const nothingChanged = initialNick === nickname && keywords === initailKeywords;
+		const nothingChanged = initialNick === nickname && areArraysEqualUnordered(keywords, initailKeywords);
 
 		if (nothingChanged) {
 			router.push('/mypage');
@@ -49,7 +50,7 @@ const ProfileForm = ({ initialNick, initailKeywords }: ProfileFormProps) => {
 
 	return (
 		<form onSubmit={handleSubmit} className="flex flex-col gap-6 desktop:gap-12 w-full mx-auto">
-			<Nickname isValidate={isValidateNick} setIsValidate={setIsValidateNick} />
+			<Nickname isValidate={isValidateNick} setIsValidate={setIsValidateNick} initialNick={initialNick} />
 			<Keywords keywords={keywords} setKeywords={setKeywords} />
 			<div className="w-full flex justify-end items-center gap-2">
 				<Link
