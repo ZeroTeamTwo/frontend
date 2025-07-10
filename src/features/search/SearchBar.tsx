@@ -1,8 +1,8 @@
 'use client';
 
-import useSearch from '../hooks/useSearch';
-import CancelCircleIcon from '../icon/CancelCircle';
-import SearchIcon from '../icon/Search';
+import SearchIcon from '@/shared/icon/Search';
+import useSearch from './hooks/useSearch';
+import CancelCircleIcon from '@/shared/icon/CancelCircle';
 
 /**
  * `SearchBar` 컴포넌트는 검색어를 입력하는 입력 필드와 검색 아이콘을 포함하는 컴포넌트입니다.
@@ -17,7 +17,7 @@ const SearchBar = () => {
 			onSubmit={(e) => {
 				e.preventDefault();
 			}}
-			className="flex p-3 gap-2 border-2 w-full items-center max-w-[660px] border-line-normal focus-within:ring-2 rounded-[12px] focus-within:ring-primary-main-normal desktop:max-w-[960px]"
+			className="flex p-3 gap-2 border-2 w-full items-center max-w-[660px] border-line-normal focus-within:border-primary-main-normal rounded-[12px]"
 		>
 			<SearchIcon width={20} height={20} className="text-label-assistive" />
 
@@ -31,7 +31,7 @@ const SearchBar = () => {
 			{searchTerm.length === 0 ? (
 				<div />
 			) : (
-				<button onClick={() => setSearchTerm('')}>
+				<button type="button" onClick={() => setSearchTerm('')}>
 					<CancelCircleIcon width={22} height={22} />
 				</button>
 			)}
