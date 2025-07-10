@@ -23,6 +23,8 @@ export async function editProfile(nickname: string, keywords: Keyword[]) {
 			cache: 'no-store',
 		});
 
+		//TODO: 응답값 반영
+
 		return { status: 'success' };
 	} catch (err) {
 		if (err instanceof RefreshTokenError) {
