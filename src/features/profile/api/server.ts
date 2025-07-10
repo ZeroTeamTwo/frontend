@@ -23,7 +23,10 @@ export async function editProfile(nickname: string, keywords: Keyword[]) {
 			cache: 'no-store',
 		});
 
-		//TODO: 응답값 반영
+		cookieStore.set(COOKIE_NAME.auth.nickname, nickname, {
+			httpOnly: false,
+			path: '/',
+		});
 
 		return { status: 'success' };
 	} catch (err) {
