@@ -1,3 +1,5 @@
+'use server';
+
 import { logout } from '@/shared/api/auth';
 import { tokenFetcher } from '@/shared/api/fetcher';
 import { Keyword } from '@/shared/const/committee';

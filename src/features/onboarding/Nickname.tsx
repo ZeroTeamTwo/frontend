@@ -15,10 +15,10 @@ type NicknameBtnExtension = {
 	className?: string;
 };
 
-type NicknameProps = {
+interface NicknameProps {
 	isValidate: boolean;
 	setIsValidate: React.Dispatch<React.SetStateAction<boolean>>;
-};
+}
 
 const Nickname = ({ setIsValidate }: NicknameProps) => {
 	const { nickname, setNickname, error, isChecking, isValidLength, isDuplicateChecked, checkDuplicate, isValid } = useNickname();
@@ -37,7 +37,7 @@ const Nickname = ({ setIsValidate }: NicknameProps) => {
 	}, [isValid, setIsValidate]);
 
 	return (
-		<section className="min-w-[343px]">
+		<section className="flex flex-col gap-3 min-w-[343px]">
 			<label htmlFor="nickname" className="text-left typo-caption1 font-bold text-interaction-inactive">
 				닉네임
 			</label>
