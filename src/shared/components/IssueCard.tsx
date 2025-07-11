@@ -16,7 +16,7 @@ export interface IssueCardProps {
 	/** 카드 제목 */
 	aiTitle: string;
 	/** 소속 위원회 */
-	committeeName: CommitteeName | null;
+	committeeName: CommitteeName;
 	/** 발의자 이름 */
 	representativeName: string;
 	/** 발의 날짜 (YYYY.MM.DD 형태) */
@@ -80,6 +80,10 @@ const IssueCard = ({
 		}
 	};
 
+	const getValidCommitteeName = (name: CommitteeName | null): CommitteeName => {
+		return name && name in COMMITTEES ? name : '기타';
+	};
+
 	return (
 		<article className="flex flex-col rounded-[12px] px-5 pt-5 pb-3 gap-2.5 bg-bg-white desktop:gap-3 desktop:pl-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ">
 			<Link href={CLIENT_NAVI_PATH.billDetail.getPath(billId)}>
@@ -94,13 +98,13 @@ const IssueCard = ({
 						</div>
 					</div>
 					<div className="flex items-center justify-center w-[52px] h-[52px] rounded-full bg-bg-gray text-2xl desktop:text-[32px]">
-						{COMMITTEES[committeeName || '기타'].emoji}
+						{COMMITTEES[getValidCommitteeName(committeeName)].emoji}
 					</div>
 				</header>
 			</Link>
 			<section className="flex gap-2">
 				<TagLabel type="status" text={billHistoryStatus}></TagLabel>
-				<TagLabel type="committee" text={committeeName || '기타'}></TagLabel>
+				<TagLabel type="committee" text={getValidCommitteeName(committeeName)}></TagLabel>
 			</section>
 			<footer className="flex justify-between">
 				<div className="flex gap-2">
