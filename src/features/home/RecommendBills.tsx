@@ -23,11 +23,8 @@ const RecommendBills = async () => {
 		if (err instanceof RefreshTokenError) {
 			redirect('/modal-login');
 		}
-		return (
-			<div className="w-full flex justify-center items-center h-[100px] text-center text-red-500">
-				서버가 원활하지 않습니다. 잠시 후 다시 시도해주세요.
-			</div>
-		);
+
+		throw err;
 	}
 };
 
