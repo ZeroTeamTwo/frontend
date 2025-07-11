@@ -16,7 +16,7 @@ export interface IssueCardProps {
 	/** 카드 제목 */
 	aiTitle: string;
 	/** 소속 위원회 */
-	committeeName: CommitteeName;
+	committeeName: CommitteeName | null;
 	/** 발의자 이름 */
 	representativeName: string;
 	/** 발의 날짜 (YYYY.MM.DD 형태) */
@@ -94,13 +94,13 @@ const IssueCard = ({
 						</div>
 					</div>
 					<div className="flex items-center justify-center w-[52px] h-[52px] rounded-full bg-bg-gray text-2xl desktop:text-[32px]">
-						{COMMITTEES[committeeName].emoji}
+						{COMMITTEES[committeeName || '기타'].emoji}
 					</div>
 				</header>
 			</Link>
 			<section className="flex gap-2">
 				<TagLabel type="status" text={billHistoryStatus}></TagLabel>
-				<TagLabel type="committee" text={committeeName}></TagLabel>
+				<TagLabel type="committee" text={committeeName || '기타'}></TagLabel>
 			</section>
 			<footer className="flex justify-between">
 				<div className="flex gap-2">

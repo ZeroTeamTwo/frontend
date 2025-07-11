@@ -9,11 +9,9 @@ export const metadata: Metadata = {
 
 export default function SearchPage() {
 	return (
-		<div className="flex flex-col items-center w-full px-5 py-8 desktop:pt-0 desktop:pb-25 desktop:my-12  desktop:gap-8">
+		<div className="flex flex-col items-center w-full">
 			<Suspense>
-				<div className="max-w-maxw w-full flex justify-center">
-					<SearchBar />
-				</div>
+				<SearchBar />
 				<SearchContent />
 			</Suspense>
 		</div>

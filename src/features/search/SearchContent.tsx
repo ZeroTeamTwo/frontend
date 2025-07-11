@@ -1,7 +1,14 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
+import RecommendTerms from './RecommendTerms';
+import SearchData from './SearchData';
+
 const SearchContent = () => {
-	return <section className="flex flex-col gap-5 items-baseline py-8 desktop:items-center">gd</section>;
+	const searchParams = useSearchParams();
+	const keyword = searchParams.get('search') || '';
+
+	return <>{keyword === '' ? <RecommendTerms /> : <SearchData keyword={keyword} />}</>;
 };
 
 export default SearchContent;

@@ -13,29 +13,31 @@ const SearchBar = () => {
 	const { searchTerm, setSearchTerm } = useSearch();
 
 	return (
-		<form
-			onSubmit={(e) => {
-				e.preventDefault();
-			}}
-			className="flex p-3 gap-2 border-2 w-full items-center max-w-[660px] border-line-normal focus-within:border-primary-main-normal rounded-[12px]"
-		>
-			<SearchIcon width={20} height={20} className="text-label-assistive" />
+		<div className="w-full flex justify-center px-5 py-16 ">
+			<form
+				onSubmit={(e) => {
+					e.preventDefault();
+				}}
+				className="flex p-3 gap-2 border-2 w-full items-center max-w-[660px] border-line-normal focus-within:border-primary-main-normal rounded-[12px]"
+			>
+				<SearchIcon width={20} height={20} className="text-label-assistive" />
 
-			<input
-				type="text"
-				value={searchTerm}
-				onChange={(e) => setSearchTerm(e.target.value)}
-				placeholder="검색어를 입력해주세요"
-				className="flex-1 outline-none typo-body2-normal text-black"
-			/>
-			{searchTerm.length === 0 ? (
-				<div />
-			) : (
-				<button type="button" onClick={() => setSearchTerm('')}>
-					<CancelCircleIcon width={22} height={22} />
-				</button>
-			)}
-		</form>
+				<input
+					type="text"
+					value={searchTerm}
+					onChange={(e) => setSearchTerm(e.target.value)}
+					placeholder="검색어를 입력해주세요"
+					className="flex-1 outline-none typo-body2-normal text-black"
+				/>
+				{searchTerm.length === 0 ? (
+					<div />
+				) : (
+					<button type="button" onClick={() => setSearchTerm('')}>
+						<CancelCircleIcon width={22} height={22} />
+					</button>
+				)}
+			</form>
+		</div>
 	);
 };
 
