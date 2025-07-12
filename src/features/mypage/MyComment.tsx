@@ -3,9 +3,9 @@ import { Fragment } from 'react';
 import { getMyComments } from './api/server';
 import HeartIcon from '@/shared/icon/Heart';
 import TagIcon from '@/shared/icon/Tag';
-import { useInfinityScrollSensor } from '@/shared/hooks/useInfinityScrollSensor';
 import EmptyData from './EmptyData';
 import { QUERY_KEYS } from '@/shared/const/reactQuery';
+import InfinityScrollSpinner from '@/shared/components/InfinityScrollSpinner';
 
 const MyComment = () => {
 	const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
@@ -20,8 +20,6 @@ const MyComment = () => {
 		},
 		gcTime: 60 * 1000,
 	});
-
-	const { sensorRef } = useInfinityScrollSensor({ isFetching, hasNextPage, fetchNextPage });
 
 	if (data?.pages?.length === 1 && data.pages[0].result.content.length === 0) {
 		return <EmptyData category="댓글" />;
@@ -49,14 +47,8 @@ const MyComment = () => {
 				</Fragment>
 			))}
 
-			<div ref={sensorRef} className="flex items-center justify-center w-full">
-				{hasNextPage && (
-					<div
-						className="w-6 h-6 border-2 border-t-transparent border-inverse-primary-main rounded-full animate-spin"
-						role="status"
-						aria-label="로딩 중"
-					/>
-				)}
+			<div className="flex items-center justify-center w-full">
+				{hasNextPage && <InfinityScrollSpinner isFetching={isFetching} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />}
 			</div>
 		</div>
 	);

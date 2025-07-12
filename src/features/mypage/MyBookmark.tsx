@@ -4,8 +4,8 @@ import IssueCard from '@/shared/components/IssueCard';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getMyBookmarks } from './api/server';
 import EmptyData from './EmptyData';
-import { useInfinityScrollSensor } from '@/shared/hooks/useInfinityScrollSensor';
 import { QUERY_KEYS } from '@/shared/const/reactQuery';
+import InfinityScrollSpinner from '@/shared/components/InfinityScrollSpinner';
 
 const MyBookmark = () => {
 	//TODO: 에러처리?
@@ -22,8 +22,6 @@ const MyBookmark = () => {
 		gcTime: 60 * 1000,
 	});
 
-	const { sensorRef } = useInfinityScrollSensor({ isFetching, hasNextPage, fetchNextPage });
-
 	if (data?.pages?.length === 1 && data.pages[0].result.content.length === 0) {
 		return <EmptyData category="북마크" />;
 	}
@@ -33,14 +31,8 @@ const MyBookmark = () => {
 			<div className="grid grid-cols-1 gap-6 @min-[768px]:grid-cols-2 ">
 				{data?.pages.map(({ result }) => result.content.map((billInfo) => <IssueCard key={billInfo.billId} {...billInfo} />))}
 			</div>
-			<div ref={sensorRef} className="flex items-center justify-center w-full col-span-2">
-				{hasNextPage && (
-					<div
-						className="w-6 h-6 border-2 border-t-transparent border-inverse-primary-main rounded-full animate-spin"
-						role="status"
-						aria-label="로딩 중"
-					/>
-				)}
+			<div className="flex items-center justify-center w-full col-span-2">
+				{hasNextPage && <InfinityScrollSpinner isFetching={isFetching} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />}
 			</div>
 		</>
 	);

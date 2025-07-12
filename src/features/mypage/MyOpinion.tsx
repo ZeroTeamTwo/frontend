@@ -9,8 +9,8 @@ import TagIcon from '@/shared/icon/Tag';
 import Link from 'next/link';
 import { CLIENT_NAVI_PATH } from '@/shared/const/url';
 import EmptyData from './EmptyData';
-import { useInfinityScrollSensor } from '@/shared/hooks/useInfinityScrollSensor';
 import { QUERY_KEYS } from '@/shared/const/reactQuery';
+import InfinityScrollSpinner from '@/shared/components/InfinityScrollSpinner';
 
 const MyOpinion = () => {
 	const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
@@ -25,8 +25,6 @@ const MyOpinion = () => {
 		},
 		gcTime: 60 * 1000,
 	});
-
-	const { sensorRef } = useInfinityScrollSensor({ isFetching, hasNextPage, fetchNextPage });
 
 	const COMMENT_BY_REACTION: Record<BillReaction, string> = {
 		좋아요: '좋아요를 눌렀어요! 이 법안에 힘을 보탰습니다.',
@@ -68,14 +66,8 @@ const MyOpinion = () => {
 				</div>
 			))}
 
-			<div ref={sensorRef} className="flex items-center justify-center w-full">
-				{hasNextPage && (
-					<div
-						className="w-6 h-6 border-2 border-t-transparent border-inverse-primary-main rounded-full animate-spin"
-						role="status"
-						aria-label="로딩 중"
-					/>
-				)}
+			<div className="flex items-center justify-center w-full">
+				{hasNextPage && <InfinityScrollSpinner isFetching={isFetching} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />}
 			</div>
 		</div>
 	);
