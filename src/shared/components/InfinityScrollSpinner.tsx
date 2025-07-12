@@ -3,7 +3,7 @@ import { useInfinityScrollSensor } from '../hooks/useInfinityScrollSensor';
 interface InfinityScrollSpinnerProps {
 	isFetching: boolean;
 	hasNextPage: boolean;
-	fetchNextPage: () => void;
+	fetchNextPage: () => Promise<unknown>;
 }
 
 const InfinityScrollSpinner = ({ isFetching, hasNextPage, fetchNextPage }: InfinityScrollSpinnerProps) => {
