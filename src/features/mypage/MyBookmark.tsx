@@ -6,10 +6,10 @@ import { getMyBookmarks } from './api/server';
 import EmptyData from './EmptyData';
 import { QUERY_KEYS } from '@/shared/const/reactQuery';
 import InfinityScrollSpinner from '@/shared/components/InfinityScrollSpinner';
+import ErrorIndicator from '@/shared/components/ErrorIndicator';
 
 const MyBookmark = () => {
-	//TODO: 에러처리?
-	const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
+	const { data, fetchNextPage, hasNextPage, isFetching, isError } = useInfiniteQuery({
 		queryKey: [QUERY_KEYS.myBookmarks],
 		queryFn: ({ pageParam }) => getMyBookmarks({ page: pageParam }),
 		initialPageParam: 0,
@@ -27,14 +27,15 @@ const MyBookmark = () => {
 	}
 
 	return (
-		<>
-			<div className="grid grid-cols-1 gap-6 @min-[768px]:grid-cols-2 ">
+		<div className="flex flex-col px-5">
+			<div className="grid grid-cols-1 gap-3 @min-[768px]:grid-cols-2 ">
 				{data?.pages.map(({ result }) => result.content.map((billInfo) => <IssueCard key={billInfo.billId} {...billInfo} />))}
 			</div>
 			<div className="flex items-center justify-center w-full col-span-2">
-				{hasNextPage && <InfinityScrollSpinner isFetching={isFetching} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />}
+				{isError && <ErrorIndicator retiralFn={fetchNextPage} />}
+				{!isError && hasNextPage && <InfinityScrollSpinner isFetching={isFetching} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />}
 			</div>
-		</>
+		</div>
 	);
 };
 

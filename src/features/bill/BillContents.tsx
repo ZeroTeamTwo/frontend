@@ -6,11 +6,12 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { getFilteredBills } from './api/server';
 import IssueCard from '@/shared/components/IssueCard';
 import InfinityScrollSpinner from '@/shared/components/InfinityScrollSpinner';
+import ErrorIndicator from '@/shared/components/ErrorIndicator';
 
 const BillContents = () => {
 	const { order, keywords } = useBillQueryState();
 
-	const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
+	const { data, fetchNextPage, hasNextPage, isFetching, isError } = useInfiniteQuery({
 		queryKey: [QUERY_KEYS.bills, order, keywords],
 		queryFn: ({ pageParam }) => getFilteredBills({ page: pageParam, keywords, order }),
 		initialPageParam: 0,
@@ -32,7 +33,8 @@ const BillContents = () => {
 				<IssueCard key={bill.billId} {...bill} />
 			))}
 			<div className="flex col-span-3 w-full items-center justify-center max-desktop:col-span-2 max-tablet:col-span-1">
-				{hasNextPage && <InfinityScrollSpinner isFetching={isFetching} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />}
+				{isError && <ErrorIndicator retiralFn={fetchNextPage} />}
+				{!isError && hasNextPage && <InfinityScrollSpinner isFetching={isFetching} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />}
 			</div>
 		</section>
 	);

@@ -8,6 +8,7 @@ import { getBillComments } from './api/server';
 import { QUERY_KEYS } from '@/shared/const/reactQuery';
 import { useBillComment } from './hooks/useBillComment';
 import InfinityScrollSpinner from '@/shared/components/InfinityScrollSpinner';
+import ErrorIndicator from '@/shared/components/ErrorIndicator';
 
 interface CommentListType {
 	billId: string | number;
@@ -15,7 +16,7 @@ interface CommentListType {
 }
 
 const DetailCommentList = ({ billId, nickname }: CommentListType) => {
-	const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
+	const { data, fetchNextPage, hasNextPage, isFetching, isError } = useInfiniteQuery({
 		queryKey: [QUERY_KEYS.billComments, billId],
 		queryFn: ({ pageParam }) => getBillComments({ id: billId, page: pageParam }),
 		initialPageParam: 0,
@@ -59,7 +60,8 @@ const DetailCommentList = ({ billId, nickname }: CommentListType) => {
 					);
 				})}
 				<div className="flex items-center justify-center w-full">
-					{hasNextPage && <InfinityScrollSpinner isFetching={isFetching} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />}
+					{isError && <ErrorIndicator retiralFn={fetchNextPage} />}
+					{!isError && hasNextPage && <InfinityScrollSpinner isFetching={isFetching} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />}{' '}
 				</div>
 			</ul>
 		</section>

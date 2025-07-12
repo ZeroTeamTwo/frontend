@@ -6,9 +6,10 @@ import TagIcon from '@/shared/icon/Tag';
 import EmptyData from './EmptyData';
 import { QUERY_KEYS } from '@/shared/const/reactQuery';
 import InfinityScrollSpinner from '@/shared/components/InfinityScrollSpinner';
+import ErrorIndicator from '@/shared/components/ErrorIndicator';
 
 const MyComment = () => {
-	const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
+	const { data, fetchNextPage, hasNextPage, isFetching, isError } = useInfiniteQuery({
 		queryKey: [QUERY_KEYS.myComments],
 		queryFn: ({ pageParam }) => getMyComments({ page: pageParam }),
 		initialPageParam: 0,
@@ -28,7 +29,7 @@ const MyComment = () => {
 	const flatComments = data?.pages.flatMap((page) => page.result.content) ?? [];
 
 	return (
-		<div className="flex flex-col w-full gap-5 px-6 py-5 bg-white rounded-[12px]">
+		<div className="flex flex-col w-full gap-5 px-6 py-5 bg-white desktop:rounded-[12px]">
 			{flatComments.map((comment, index) => (
 				<Fragment key={comment.commentId}>
 					<div className="w-full flex flex-col flex-wrap break-words gap-2">
@@ -48,7 +49,8 @@ const MyComment = () => {
 			))}
 
 			<div className="flex items-center justify-center w-full">
-				{hasNextPage && <InfinityScrollSpinner isFetching={isFetching} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />}
+				{isError && <ErrorIndicator retiralFn={fetchNextPage} />}
+				{!isError && hasNextPage && <InfinityScrollSpinner isFetching={isFetching} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />}
 			</div>
 		</div>
 	);
