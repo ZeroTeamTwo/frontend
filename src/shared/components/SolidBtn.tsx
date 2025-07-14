@@ -46,7 +46,7 @@ export const SolidBtn = <T extends Record<string, unknown> = Record<string, neve
 	return (
 		<button
 			type="button"
-			className={`${base} ${variant} ${sizeClass}  disabled:opacity-50 ${className}`}
+			className={`${base} ${variant} ${sizeClass} disabled:bg-interaction-disable disabled:text-label-assistive disabled:opacity-50 ${className}`}
 			onClick={onClick}
 			disabled={disabled}
 			{...rest} // 이미 필터링된 표준 HTML 속성만 전달

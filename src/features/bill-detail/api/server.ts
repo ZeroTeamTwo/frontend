@@ -2,9 +2,6 @@ import { CommitteeName } from '@/shared/const/committee';
 import { tokenFetcher } from '@/shared/api/fetcher';
 import { BillReaction } from '../const';
 import { CommentResponse } from '@/shared/components/Comment';
-import { redirect } from 'next/navigation';
-import { MODAL_PATH } from '@/shared/const/url';
-import { isLoggedIn } from '@/features/auth/utils/cookie';
 
 export interface BillHistory {
 	id: number;
@@ -115,15 +112,6 @@ export const likeBillComment = async (id: number | string) => {
 	await tokenFetcher(`/api/comments/${id}/likes/toggle`, { method: 'POST' });
 };
 
-export const redirectReportModal = async (id: number | string) => {
-	const isLogin = await isLoggedIn();
-	if (!isLogin) {
-		return redirect(MODAL_PATH.login);
-	}
-
-	redirect(MODAL_PATH.reportComment + `/${id}`);
-};
-
-export const reportBillComment = async (id: number | string) => {
-	await tokenFetcher(`/api/comments/${id}/reports`, { method: 'POST', body: JSON.stringify({ content: '부적절한 표현입니다.' }) });
+export const reportBillComment = async (id: number | string, content: string) => {
+	await tokenFetcher(`/api/comments/${id}/reports`, { method: 'POST', body: JSON.stringify({ content }) });
 };

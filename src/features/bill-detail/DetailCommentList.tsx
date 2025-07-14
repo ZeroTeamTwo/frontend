@@ -4,11 +4,12 @@ import Comment from '@/shared/components/Comment';
 import React from 'react';
 import AddComment from './AddComment';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { getBillComments, redirectReportModal } from './api/server';
+import { getBillComments } from './api/server';
 import { QUERY_KEYS } from '@/shared/const/reactQuery';
 import { useBillComment } from './hooks/useBillComment';
 import InfinityScrollSpinner from '@/shared/components/InfinityScrollSpinner';
 import ErrorIndicator from '@/shared/components/ErrorIndicator';
+import { useReportModal } from './hooks/useReportModal';
 
 interface CommentListType {
 	billId: string | number;
@@ -31,6 +32,7 @@ const DetailCommentList = ({ billId, nickname }: CommentListType) => {
 	});
 
 	const { deleteComment, editComment, likeComment } = useBillComment(billId);
+	const openReportModal = useReportModal();
 	const commentList = data?.pages.flatMap((page) => page.result.comments.content) ?? [];
 
 	return (
@@ -49,7 +51,7 @@ const DetailCommentList = ({ billId, nickname }: CommentListType) => {
 							editFn={(newContent: string) => {
 								editComment.mutate({ id: comment.commentId, content: newContent });
 							}}
-							reportFn={() => redirectReportModal(comment.commentId)}
+							reportFn={() => openReportModal(comment.commentId)}
 							deleteFn={() => {
 								deleteComment.mutate({ id: comment.commentId });
 							}}
