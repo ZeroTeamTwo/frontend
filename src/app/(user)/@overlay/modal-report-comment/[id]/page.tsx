@@ -5,13 +5,15 @@ import Modal from '@/shared/components/Modal';
 
 import CommentReportForm from '@/features/bill-detail/CommentReportForm';
 import { SolidBtn } from '@/shared/components/SolidBtn';
+import { useRouter } from 'next/navigation';
 
 export default function Page({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = use(params);
 	const [isReported, setIsReported] = useState<boolean>(false);
+	const router = useRouter();
 
 	return (
-		<Modal className="w-[335px] desktop:w-[560px] desktop:h-[570px]">
+		<Modal className="w-[335px] desktop:w-[560px] h-[570px] desktop:h-[570px]">
 			<div className="flex flex-col items-center w-full ">
 				<h2 className="w-full typo-headline2 pl-6 mt-6 my-5">댓글 신고</h2>
 				{!isReported ? (
@@ -33,7 +35,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
 								</p>
 							</div>
 						</div>
-						<SolidBtn label="확인" size="large" />
+						<SolidBtn label="확인" size="large" onClick={() => router.back()} />
 					</div>
 				)}
 			</div>

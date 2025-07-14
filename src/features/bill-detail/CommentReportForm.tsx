@@ -39,12 +39,12 @@ const CommentReportForm = ({ id, nextStep }: ReportFormProps) => {
 	};
 
 	return (
-		<div className="flex flex-col gap-5 px-5 py-5 h-full">
+		<div className="flex flex-col gap-5 px-5 pt-2 pb-5 h-[506px]">
 			<h3 className="typo-headline2 font-bold text-label-neutral">어떤 문제인가요?</h3>
 			<p className="flex flex-wrap typo-body1-normal text-label-neutral font-regular">
 				그래이픽에서는 모든 커뮤니티 가이드를 검토하므로, 완벽히 일치하지 않아도 괜찮습니다.
 			</p>
-			<div className="flex flex-col py-2 px-5 rounded-[16px] border gap-1 border-line-neutral overflow-y-auto max-h-[240px] scrollbar-hide">
+			<div className="flex flex-col py-2 px-5 rounded-[16px] border gap-1 border-line-neutral overflow-y-auto flex-1 scrollbar-hide">
 				{REPORT_REASONS.map((reason) => (
 					<label key={reason} className="flex items-center gap-2 py-3 cursor-pointer ">
 						<input
