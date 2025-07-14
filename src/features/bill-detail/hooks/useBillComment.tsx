@@ -113,7 +113,7 @@ export const useBillComment = (billId: string | number) => {
 			alert('댓글 신고에 성공하셨습니다.');
 		},
 		onError: (err) => {
-			handleErrorByName(err, '댓글 좋아요');
+			handleErrorByName(err, '댓글 신고');
 		},
 	});
 
