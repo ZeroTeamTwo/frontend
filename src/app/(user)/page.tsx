@@ -1,16 +1,19 @@
+import { getPopularBills } from '@/features/home/api';
+import Banner from '@/features/home/Banner';
 import Content from '@/features/home/Content';
 import ContentHeader from '@/features/home/ContentHeader';
+import RecommendBills from '@/features/home/RecommendBills';
 
-export default function Home() {
+export default async function Home() {
+	const poppularBills = await getPopularBills();
+
 	return (
 		<>
-			<div className="w-full h-[250px] flex items-center justify-center  max-w-maxw bg-primary-main-strong">배너 </div>
+			<Banner />
 			<div className="w-full flex flex-col flex-1 gap-16 desktop:gap-12 items-center px-9 py-12 bg-bg-gray ">
-				<Content>
-					<ContentHeader title="누구님이 관심있는" keywordList={['정치', '피그마', '회의']} link="/issue" />
-				</Content>
-				<Content>
-					<ContentHeader title="당신을 위한 법안" isLoginRequired link="/issue" />
+				<RecommendBills />
+				<Content data={poppularBills}>
+					<ContentHeader title="지금 핫이슈는?" link="/issue" />
 				</Content>
 			</div>
 		</>

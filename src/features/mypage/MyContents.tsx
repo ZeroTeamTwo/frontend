@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { UserCategory } from './const/user';
+import { MyProfileInfo, UserCategory } from './const/user';
 import MyBookmark from './MyBookmark';
 import MyOpinion from './MyOpinion';
 import MyComment from './MyComment';
@@ -12,13 +12,15 @@ const COMPONENT_MAP = {
 	댓글: <MyComment />,
 };
 
-const MyContents = () => {
+type MyContentsProps = Pick<MyProfileInfo, 'scrapeCount' | 'commentCount' | 'reactionCount'>;
+
+const MyContents = ({ scrapeCount, commentCount, reactionCount }: MyContentsProps) => {
 	const [curTab, setCurTab] = useState<UserCategory>('북마크');
 	const TAB_LIST: UserCategory[] = ['북마크', '의견', '댓글'];
 	const TAB_COUNT: Record<UserCategory, number> = {
-		북마크: 100,
-		의견: 2000,
-		댓글: 50,
+		북마크: scrapeCount,
+		의견: reactionCount,
+		댓글: commentCount,
 	};
 
 	return (
@@ -28,7 +30,7 @@ const MyContents = () => {
 					<Tab key={tab} label={tab} count={TAB_COUNT[tab]} isSelected={curTab === tab} onSelect={() => setCurTab(tab)} />
 				))}
 			</div>
-			<div className="flex px-5 py-6 desktop:px-6 max-desktop:justify-center max-desktop:bg-bg-gray @container">{COMPONENT_MAP[curTab]}</div>
+			<div className="flex flex-col desktop:px-5 py-6 max-desktop:justify-center max-desktop:bg-bg-gray @container">{COMPONENT_MAP[curTab]}</div>
 		</div>
 	);
 };

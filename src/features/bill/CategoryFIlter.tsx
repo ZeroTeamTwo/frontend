@@ -4,7 +4,7 @@ import Dropdown from '@/shared/components/DropDown';
 import { SolidBtn } from '@/shared/components/SolidBtn';
 import { Keyword, KEYWORD_LIST } from '@/shared/const/committee';
 import useUpdateQueryParam from '@/shared/hooks/useUpdateQueryParam';
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import KeywordBtn from '@/shared/components/KeywordBtn';
 import Image from 'next/image';
@@ -18,10 +18,21 @@ const CategoryFilter = () => {
 	const [label, setLabel] = useState<string>('전체');
 
 	// URL의 keywords 파라미터 반영
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (keywordParam) {
-			const initialKeywords = keywordParam.split(',').filter((kw) => KEYWORD_LIST.includes(kw as Keyword));
-			setSelected(initialKeywords as Keyword[]);
+			const initialKeywords = keywordParam.split(',').filter((kw) => KEYWORD_LIST.includes(kw as Keyword)) as Keyword[];
+
+			setSelected(initialKeywords);
+			setLabel(
+				initialKeywords.length === 0
+					? '전체'
+					: initialKeywords.length === 1
+						? initialKeywords[0]
+						: `${initialKeywords[0]} 외 ${initialKeywords.length - 1}개`,
+			);
+		} else {
+			setSelected([]);
+			setLabel('전체');
 		}
 	}, [keywordParam]);
 
@@ -32,10 +43,8 @@ const CategoryFilter = () => {
 	const handleApply = (close: () => void) => {
 		if (selected.length > 0) {
 			updateQueryParam('keywords', selected.join(','));
-			setLabel(selected.length === 1 ? selected[0] : `${selected[0]} 외 ${selected.length - 1}개`);
 		} else {
 			updateQueryParam('keywords', null);
-			setLabel('전체'); // 선택된 항목이 없으면 '전체'로 설정
 		}
 		close();
 	};
@@ -58,7 +67,7 @@ const CategoryFilter = () => {
 					<div className="absolute bottom-0 w-full  flex flex-1 justify-center desktop:justify-between gap-4 desktop:gap-0 p-2 desktop:pr-3">
 						<button className="flex gap-1 typo-label2 font-bold cursor-pointer text-label-alternative items-center " onClick={handleReset}>
 							초기화
-							<Image src="/svgs/reset.svg" alt="리셋" width={14} height={14} />
+							<Image src="/svgs/reset.svg" alt="리셋" draggable={false} width={14} height={14} className="w-3.5 h-3.5" />
 						</button>
 						<SolidBtn label="적용하기" onClick={() => handleApply(close)} className="flex-1 desktop:flex-0" />
 					</div>

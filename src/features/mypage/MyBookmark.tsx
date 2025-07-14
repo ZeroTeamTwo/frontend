@@ -1,27 +1,43 @@
+'use client';
+
 import IssueCard from '@/shared/components/IssueCard';
-import React from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { getMyBookmarks } from './api/server';
+import EmptyData from './EmptyData';
+import { QUERY_KEYS } from '@/shared/const/reactQuery';
+import InfinityScrollSpinner from '@/shared/components/InfinityScrollSpinner';
+import ErrorIndicator from '@/shared/components/ErrorIndicator';
+import IssueCardSkeleton from '@/shared/skeletons/IssueCard.skeleton';
 
 const MyBookmark = () => {
-	// TODO:
-	const arr = Array(10).fill(0);
+	const { data, fetchNextPage, hasNextPage, isLoading, isFetching, isError } = useInfiniteQuery({
+		queryKey: [QUERY_KEYS.myBookmarks],
+		queryFn: ({ pageParam }) => getMyBookmarks({ page: pageParam }),
+		initialPageParam: 0,
+		getNextPageParam: (lastPage) => {
+			if (!lastPage.result.last) {
+				return lastPage.result.pageNumber + 1;
+			}
+			return undefined;
+		},
+		gcTime: 60 * 1000,
+	});
+
+	if (data?.pages?.length === 1 && data.pages[0].result.content.length === 0) {
+		return <EmptyData category="북마크" />;
+	}
+
 	return (
-		<div className="grid grid-cols-1 gap-6 @min-[768px]:grid-cols-2 ">
-			{arr.map((_, i) => (
-				<IssueCard
-					key={i}
-					id={'1'}
-					title={'AI 시대의 개인정보 보호 방안'}
-					committee={'외교통일위원회'}
-					name={'홍길동'}
-					date={'2025.04.27'}
-					state={'발의/소관위원회 심사'}
-					keywordList={['AI', '개인정보', '보안']}
-					viewNum={0}
-					bookmarkNum={0}
-					commentNum={0}
-					isBookMarked={true}
-				/>
-			))}
+		<div className="flex flex-col px-5">
+			<div className="grid grid-cols-1 gap-3 @min-[768px]:grid-cols-2 ">
+				{isLoading && Array.from({ length: 6 }).map((_, idx) => <IssueCardSkeleton key={idx} />)}
+
+				{data?.pages.map(({ result }) => result.content.map((billInfo) => <IssueCard key={billInfo.billId} {...billInfo} />))}
+			</div>
+			<div className="flex items-center justify-center w-full col-span-2">
+				{isError && <ErrorIndicator retiralFn={fetchNextPage} />}
+				{!isError && hasNextPage && <InfinityScrollSpinner isFetching={isFetching} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />}
+			</div>
 		</div>
 	);
 };

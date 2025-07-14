@@ -1,7 +1,7 @@
 'use server';
 
 import { logout } from '@/shared/api/auth';
-import { authorizedFetcher } from '@/shared/api/fetcher';
+import { tokenFetcher } from '@/shared/api/fetcher';
 import { Keyword } from '@/shared/const/committee';
 import { COOKIE_NAME } from '@/shared/const/cookie';
 import { RefreshTokenError } from '@/shared/const/error';
@@ -43,10 +43,22 @@ export async function onboardUser(nickname: string, keywords: Keyword[]) {
 	}
 
 	try {
-		await authorizedFetcher('/api/users/me/onboarding', {
+		await tokenFetcher('/api/users/me/onboarding', {
 			method: 'POST',
 			body: JSON.stringify({ nickname, interestKeywords: keywords }),
 			cache: 'no-store',
+		});
+
+		const DEFAULT_IMG = 'https://graydang-bucket.s3.ap-northeast-2.amazonaws.com/default/images/graypick_default_user_image.png';
+
+		cookieStore.set(COOKIE_NAME.auth.nickname, nickname, {
+			httpOnly: false,
+			path: '/',
+		});
+
+		cookieStore.set(COOKIE_NAME.auth.img, DEFAULT_IMG, {
+			httpOnly: false,
+			path: '/',
 		});
 
 		return { status: 'success' };
