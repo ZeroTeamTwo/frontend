@@ -12,19 +12,21 @@ export const useLoginWithOauthCode = (code: string | null) => {
 	useEffect(() => {
 		if (!code || !socialType) return;
 
-		loginUser(code, socialType)
-			.then((user) => {
+		const doLogin = async () => {
+			try {
+				const user = await loginUser(code, socialType);
 				if (!user.nickname) {
 					router.push('/onboarding');
 				} else {
 					router.back();
 				}
-			})
-			.catch((e) => {
+			} catch (e) {
 				console.error(e);
 				setIsFail(true);
-			});
-	}, [code, socialType, router]);
+			}
+		};
 
+		doLogin();
+	}, [code, socialType, router]);
 	return { isFail, setSocialType };
 };
