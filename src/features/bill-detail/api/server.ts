@@ -1,3 +1,5 @@
+'use server';
+
 import { CommitteeName } from '@/shared/const/committee';
 import { tokenFetcher } from '@/shared/api/fetcher';
 import { BillReaction } from '../const';
@@ -78,7 +80,6 @@ export const postMyReaction = async (id: string, reactionType: BillReaction) => 
 		});
 		return { status: 'SUCCESS' };
 	} catch (err) {
-		console.error('어떤 에러일까?', err);
 		if (err instanceof Error && err.name === 'NeedLoginError') {
 			return { status: 'RELOGIN' };
 		}
