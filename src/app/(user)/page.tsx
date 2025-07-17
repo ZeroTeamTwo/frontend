@@ -13,7 +13,7 @@ export default async function Home() {
 			<div className="w-full flex flex-col flex-1 gap-16 desktop:gap-12 items-center px-9 py-12 bg-bg-gray ">
 				<RecommendBills />
 				<Content data={poppularBills}>
-					<ContentHeader title="지금 핫이슈는?" link="/issue" />
+					<ContentHeader title="지금 핫이슈는?" link="/bill?order=조회순" />
 				</Content>
 			</div>
 		</>
