@@ -4,7 +4,7 @@ import localFont from 'next/font/local';
 import GoogleAnalytics from '@/shared/script/GoogleAnalytics';
 import MicrosoftClarity from '@/shared/script/MicrosoftClarity';
 import Providers from './Providers';
-import JsonLD from '@/shared/script/JsonLd';
+import JsonLD from '@/shared/script/JsonLD';
 
 export const metadata: Metadata = {
 	title: {
