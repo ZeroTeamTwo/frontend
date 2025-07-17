@@ -32,7 +32,7 @@ export async function editProfile(nickname: string, keywords: Keyword[]) {
 	} catch (err) {
 		if (err instanceof RefreshTokenError) {
 			await logout(token);
-			return { status: 'relogin' };
+			return { status: '' };
 		} else {
 			return { status: 'retry' };
 		}

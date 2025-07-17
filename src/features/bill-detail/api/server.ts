@@ -76,14 +76,14 @@ export const postMyReaction = async (id: string, reactionType: BillReaction) => 
 			method: 'POST',
 			body: JSON.stringify({ reactionType }),
 		});
-		return { status: 'SUCCESS' };
+		return { status: 'success' };
 	} catch (err) {
 		console.error('어떤 에러일까?', err);
 		if (err instanceof Error && err.name === 'NeedLoginError') {
-			return { status: 'RELOGIN' };
+			return { status: 'relogin' };
 		}
 		if (err instanceof Error && err.name === 'RefreshTokenError') {
-			return { status: 'REFRESH' };
+			return { status: 'refresh' };
 		}
 
 		return { status: 'SERVER_ERROR' };

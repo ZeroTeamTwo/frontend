@@ -9,18 +9,18 @@ export const toggleScrapped = async (id: string) => {
 	try {
 		const cookieStore = await cookies();
 		if (!cookieStore.get(COOKIE_NAME.auth.access)?.value) {
-			return { status: 'Relogin' };
+			return { status: 'relogin' };
 		}
 
 		const response = await tokenFetcher<boolean>(`/api/bills/${id}/scraps/toggle`, { method: 'POST' });
 
 		return {
-			status: 'SUCCESS',
+			status: 'success',
 			result: response.result,
 		};
 	} catch (err) {
 		if (err instanceof NeedLoginError || err instanceof RefreshTokenError) {
-			return { status: 'Relogin' };
+			return { status: 'relogin' };
 		}
 
 		return { status: 'ERROR', message: (err as Error).message };
