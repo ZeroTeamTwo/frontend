@@ -15,7 +15,7 @@ const RecommendBills = async () => {
 				<ContentHeader
 					title={nickname ? `${nickname}님이 관심있는` : '당신을 위한 법안'}
 					keywordList={nickname ? keywords : null}
-					link="/issue"
+					link="/bill"
 					isLoginRequired={!nickname}
 				/>
 			</Content>
