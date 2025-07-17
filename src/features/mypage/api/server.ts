@@ -8,6 +8,7 @@ import { MyProfileInfo } from '../const/user';
 import { IssueCardProps } from '@/shared/components/IssueCard';
 import { BillReaction } from '@/features/bill-detail/const';
 import { logout } from '@/shared/api/auth';
+import { isLoggedIn } from '@/features/auth/utils/cookie';
 
 type MyProfileInfoResponse = { status: 'success'; result: MyProfileInfo } | { status: 'relogin' };
 
@@ -28,10 +29,9 @@ interface MyComments {
 
 // 내 프로필 정보
 export async function myProfileInfo(): Promise<MyProfileInfoResponse> {
-	const cookieStore = await cookies();
-	const token = cookieStore.get(COOKIE_NAME.auth.access)?.value;
+	const isLogin = await isLoggedIn();
 
-	if (!token) {
+	if (!isLogin) {
 		return { status: 'relogin' };
 	}
 
