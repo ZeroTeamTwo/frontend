@@ -38,7 +38,7 @@ const SearchData = ({ keyword }: { keyword: string }) => {
 					<>
 						<h2 className="flex flex-wrap typo-heading1 font-regular col-span-3 max-desktop:col-span-2 max-tablet:col-span-1">
 							<span className="desktop:font-bold">{`"${keyword}" 검색 결과`}&nbsp;</span>
-							{data?.pages?.[0]?.result?.totalCount ?? 0}
+							<span className="text-label-alternative">{data?.pages?.[0]?.result?.totalCount ?? 0}</span>
 						</h2>
 
 						{searchData.map((bill) => (
