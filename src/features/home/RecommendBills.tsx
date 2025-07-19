@@ -10,12 +10,13 @@ const RecommendBills = async () => {
 		const response = await getRecommenedBills();
 		const { nickname, keywords, bills } = response;
 
+		const link = '/bill';
 		return (
-			<Content data={bills.content}>
+			<Content data={bills.content} link={link}>
 				<ContentHeader
 					title={nickname ? `${nickname}님이 관심있는` : '당신을 위한 법안'}
 					keywordList={nickname ? keywords : null}
-					link="/bill"
+					link={link}
 					isLoginRequired={!nickname}
 				/>
 			</Content>
