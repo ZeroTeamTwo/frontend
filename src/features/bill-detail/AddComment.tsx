@@ -71,6 +71,7 @@ const AddComment = ({ id }: { id: number | string }) => {
 				<SolidBtn
 					size="small"
 					label="의견 나누기"
+					disabled={comment === ''}
 					onClick={() => addNewComment.mutate({ id, content: comment })}
 					className="font-medium desktop:font-bold desktop:typo-body2-normal w-[90px] desktop:w-[110px] desktop:h-[40px]"
 				/>
