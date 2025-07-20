@@ -10,7 +10,8 @@ const RecommendBills = async () => {
 		const response = await getRecommenedBills();
 		const { nickname, keywords, bills } = response;
 
-		const link = '/bill';
+		const link = keywords && keywords.length ? `/bill?keywords=${encodeURIComponent(keywords.join(','))}` : '/bill';
+
 		return (
 			<Content data={bills.content} link={link}>
 				<ContentHeader
