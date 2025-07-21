@@ -1,11 +1,16 @@
 'use client';
+
 import { useState } from 'react';
 import { clearAuth } from '../auth/utils/cookie';
+import { useQueryClient } from '@tanstack/react-query';
 
 const LogoutBtn = ({ isLogin }: { isLogin: boolean }) => {
 	const [isStillLogin, setisStillLogin] = useState(isLogin);
+
+	const queryClient = useQueryClient();
 	const logout = async () => {
 		await clearAuth();
+		queryClient.clear();
 		setisStillLogin(false);
 	};
 
