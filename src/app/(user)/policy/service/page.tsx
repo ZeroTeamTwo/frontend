@@ -10,7 +10,7 @@ export default function ServicePage() {
 
 	return (
 		<div className="flex flex-col max-w-desktop mx-auto px-6 py-8 gap-6 desktop:px-9 desktop:gap-9 desktop:mt-12 desktop:mb-30">
-			<div className="flex flex-col desktop:py-5  desktop:gap-5">
+			<div className="flex flex-col desktop:py-5  gap-5">
 				<h1 className="typo-title2 font-bold text-label-normal desktop:typo-title1">서비스 이용약관</h1>
 
 				<DateDropDown label={selectedDate} about="서비스 이용약관 날짜 선택">
