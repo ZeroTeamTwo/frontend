@@ -10,9 +10,9 @@ export default function PrivacyPage() {
 	return (
 		<div className="flex flex-col w-full max-w-desktop mx-auto px-6 py-8 gap-6 desktop:px-9 desktop:gap-9 desktop:mt-12 desktop:mb-30">
 			<div className="flex flex-col desktop:py-5  gap-5">
-				<h1 className="typo-title2 font-bold text-label-normal desktop:typo-title1">서비스 이용약관</h1>
+				<h1 className="typo-title2 font-bold text-label-normal desktop:typo-title1">개인정보 처리방침</h1>
 
-				<DateDropDown label={selectedDate} about="서비스 이용약관 날짜 선택">
+				<DateDropDown label={selectedDate} about="개인정보 처리방침 날짜 선택">
 					{(close) => (
 						<ul className="flex flex-col gap-2 max-h-60 overflow-auto">
 							{PRIVACY_TERM_DATELIST.map((date) => (
