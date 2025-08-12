@@ -5,7 +5,7 @@ import { CommitteeName, COMMITTEES } from '../const/committee';
 import TagLabel from './TagLabel';
 import Link from 'next/link';
 import { CLIENT_NAVI_PATH, MODAL_PATH } from '../const/url';
-import { MouseEvent, useState } from 'react';
+import { MouseEvent, useState, memo } from 'react';
 import BookmarkIcon from '../icon/Bookmark';
 import { toggleScrapped } from '../api/bill';
 import { useRouter } from 'next/navigation';
@@ -121,6 +121,8 @@ const IssueCard = ({
 };
 
 export default IssueCard;
+
+export const MemoizedIssueCard = memo(IssueCard);
 
 export const IconWithCount = ({ src, alt, nums }: { src: string; alt: string; nums: number }) => {
 	return (
