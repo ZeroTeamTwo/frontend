@@ -14,7 +14,7 @@ const Content = ({ children, data, link }: ContentProps) => {
 	return (
 		<section className="w-full flex flex-col gap-5 max-w-maxw">
 			{children}
-			<div className="grid  grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-5">
+			<div className="grid  grid-cols-1 tablet:grid-cols-2 min-[1100px]:grid-cols-3 gap-5">
 				{data.map((issue) => {
 					return <IssueCard key={issue.billId} {...issue} />;
 				})}
