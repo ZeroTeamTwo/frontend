@@ -44,3 +44,6 @@ next-env.d.ts
 
 # IDE
 .idea/
+
+# work logs (Claude 작업 로그)
+docs/work-logs/
