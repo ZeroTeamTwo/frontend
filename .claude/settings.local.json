@@ -13,7 +13,12 @@
       "Bash(npm run build:*)",
       "Bash(git add:*)",
       "Bash(rg:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "WebSearch",
+      "Bash(npx next lint:*)",
+      "Bash(claude mcp:*)",
+      "mcp__figma__get_screenshot",
+      "mcp__figma__get_design_context"
     ],
     "deny": []
   }
