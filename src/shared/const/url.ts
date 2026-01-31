@@ -2,6 +2,7 @@ export const CLIENT_NAVI_PATH = {
 	home: { name: '홈', path: '/' },
 	guide: { name: '정치 입문서', path: '/guide' },
 	bill: { name: '법안 피드', path: '/bill' },
+	politype: { name: '내 정치 유형은?', path: '/politype' },
 	billDetail: {
 		name: '법안 상세',
 		getPath: (id: string | number) => `/bill/${id}`,
@@ -27,7 +28,7 @@ export const MODAL_PATH = {
 	reportComment: '/modal-report-comment',
 };
 
-const NAVIBAR_VALUES = ['home', 'bill'] as const;
+const NAVIBAR_VALUES = ['home', 'bill', 'politype'] as const;
 export const DEPLOY_URL = 'https://graypick.co.kr';
 
 export const NAVIBAR_PATH = NAVIBAR_VALUES.map((key) => CLIENT_NAVI_PATH[key]);
