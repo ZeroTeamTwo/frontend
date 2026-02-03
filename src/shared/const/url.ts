@@ -3,6 +3,8 @@ export const CLIENT_NAVI_PATH = {
 	guide: { name: '정치 입문서', path: '/guide' },
 	bill: { name: '법안 피드', path: '/bill' },
 	politype: { name: '내 정치 유형은?', path: '/politype' },
+	polytypeQuestion: { name: '정치성향검사 문항', path: '/politype/question' },
+	polytypeResult: { name: '정치성향검사 결과', path: '/politype/result' },
 	billDetail: {
 		name: '법안 상세',
 		getPath: (id: string | number) => `/bill/${id}`,
