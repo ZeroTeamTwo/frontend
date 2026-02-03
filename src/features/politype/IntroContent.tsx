@@ -1,11 +1,14 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { SolidBtn } from '@/shared/components/SolidBtn';
 
 const IntroContent = () => {
+	const router = useRouter();
+
 	const handleStart = () => {
-		// TODO: 테스트 페이지로 이동
+		router.push('/politype/question');
 	};
 
 	return (
