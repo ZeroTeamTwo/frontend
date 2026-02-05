@@ -1,4 +1,4 @@
-import Footer from '@/features/layout/Footer';
+import FooterWrapper from '@/features/layout/FooterWrapper';
 import Header from '@/features/layout/Header';
 
 export default function Layout({
@@ -12,7 +12,7 @@ export default function Layout({
 		<>
 			<Header />
 			<main className="flex flex-col flex-1 items-center w-full">{children}</main>
-			<Footer />
+			<FooterWrapper />
 			{overlay}
 		</>
 	);
