@@ -19,7 +19,12 @@ const QuestionContent = () => {
 			</div>
 
 			<div className="relative z-10">
-				<QuestionCard questionNum={currentQuestion.id} questionText={currentQuestion.text} />
+				<QuestionCard
+					questionNum={currentQuestion.id}
+					questionText={currentQuestion.text}
+					prevBtn={!isFirst ? <NavBtn direction="prev" disabled={false} onClick={prev} inline /> : <div className="size-[48px]" />}
+					nextBtn={!isLast ? <NavBtn direction="next" disabled={!hasCurrentAnswer} onClick={next} inline /> : <div className="size-[48px]" />}
+				/>
 			</div>
 
 			<div className="relative z-10 w-full flex justify-center px-1">
@@ -38,8 +43,10 @@ const QuestionContent = () => {
 				</div>
 			)}
 
-			{!isFirst && <NavBtn direction="prev" disabled={false} onClick={prev} />}
-			{!isLast && <NavBtn direction="next" disabled={!hasCurrentAnswer} onClick={next} />}
+			<div className="hidden desktop:block">
+				{!isFirst && <NavBtn direction="prev" disabled={false} onClick={prev} />}
+				{!isLast && <NavBtn direction="next" disabled={!hasCurrentAnswer} onClick={next} />}
+			</div>
 		</div>
 	);
 };
