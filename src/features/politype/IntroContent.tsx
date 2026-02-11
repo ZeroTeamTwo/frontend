@@ -38,7 +38,16 @@ const IntroContent = () => {
 						sizes="600px"
 						priority
 						draggable={false}
-						className="object-cover"
+						className="hidden object-cover desktop:block"
+					/>
+					<Image
+						src="/images/politype/characters-mb.png"
+						alt="정치 유형 캐릭터들"
+						fill
+						sizes="600px"
+						priority
+						draggable={false}
+						className="object-cover desktop:hidden"
 					/>
 				</div>
 			</div>

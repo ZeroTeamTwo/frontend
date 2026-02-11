@@ -2,17 +2,20 @@ interface NavBtnProps {
 	direction: 'prev' | 'next';
 	disabled: boolean;
 	onClick: () => void;
+	inline?: boolean;
 }
 
-const NavBtn = ({ direction, disabled, onClick }: NavBtnProps) => {
+const NavBtn = ({ direction, disabled, onClick, inline = false }: NavBtnProps) => {
+	const positionClass = inline
+		? 'flex size-[48px] items-center justify-center rounded-[12px] transition-colors'
+		: `absolute top-1/2 z-10 flex size-[48px] -translate-y-1/2 items-center justify-center rounded-[12px] backdrop-blur-[32px] transition-colors ${direction === 'prev' ? 'left-5' : 'right-5'}`;
+
 	return (
 		<button
 			type="button"
 			onClick={onClick}
 			disabled={disabled}
-			className={`group absolute top-1/2 z-10 flex size-[48px] -translate-y-1/2 items-center justify-center rounded-[12px] backdrop-blur-[32px] transition-colors ${
-				direction === 'prev' ? 'left-5' : 'right-5'
-			} ${disabled ? 'cursor-not-allowed bg-transparent' : 'bg-transparent hover:bg-[rgba(255,255,255,0.05)] active:bg-[rgba(255,255,255,0.12)]'}`}
+			className={`group ${positionClass} ${disabled ? 'cursor-not-allowed bg-transparent' : 'bg-transparent hover:bg-[rgba(255,255,255,0.05)] active:bg-[rgba(255,255,255,0.12)]'}`}
 		>
 			<svg
 				width="24"

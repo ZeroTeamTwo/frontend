@@ -1,7 +1,8 @@
 import { CLIENT_NAVI_PATH } from '@/shared/const/url';
 
+const OFFICIAL_MAIL = 'ttxcrew@gmail.com';
+
 const Footer = () => {
-	const OFFICIAL_MAIL = 'ttxcrew@gmail.com';
 	return (
 		<footer className="w-full flex justify-center items-center bg-bg-gray">
 			<div className="w-full flex flex-col justify-center items-baseline px-5 h-[120px] typo-body2-normal text-label-neutral font-regular desktop:max-w-maxw desktop:flex-row desktop:h-[96px] desktop:justify-between desktop:items-center desktop:px-5 desktop:py-9 gap-1 desktop:gap-0 desktop:typo-body1-normal">
