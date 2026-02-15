@@ -14,7 +14,7 @@ const DetailProcess = ({ history }: Pick<BillDetalProps, 'history'>) => {
 		<section className="flex flex-col w-full gap-5 desktop:px-[20px] desktop:pb-[40px]">
 			<h3 className="typo-heading2 font-bold text-label-normal desktop:typo-heading1">법안 처리 상황</h3>
 			<div className="flex flex-col gap-[24px] px-[4px] desktop:gap-[36px] desktop:px-0">
-				<div className="px-5 py-4 rounded-[12px] typo-body2-normal text-label-normal font-regular text-center align-middle bg-bg-gray desktop:typo-body1-reading">
+				<div className="px-5 py-4 rounded-[12px] typo-body2-normal text-label-normal font-regular text-center align-middle bg-bg-normal-alternative desktop:typo-body1-reading">
 					{currentStep?.[1].label || ' '}
 				</div>
 				<div className="flex flex-col max-desktop:px-3 desktop:justify-center desktop:flex-row w-full">{processBar}</div>

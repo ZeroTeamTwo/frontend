@@ -55,7 +55,9 @@ const TagLabel = ({ type, text }: TagLabelProps) => {
 	const colorClassName = `${bg} ${textColor}`;
 
 	return (
-		<div className={`flex items-center justify-center text-center h-6 rounded-[6px] px-1.5 gap-1 typo-caption1 font-medium  ${colorClassName}`}>
+		<div
+			className={`flex items-center justify-center text-center text-nowrap h-6 rounded-[6px] px-1.5 gap-1 typo-caption1 font-medium ${colorClassName}`}
+		>
 			{text}
 		</div>
 	);

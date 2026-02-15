@@ -24,13 +24,13 @@ const MyContents = ({ scrapeCount, commentCount, reactionCount }: MyContentsProp
 	};
 
 	return (
-		<div className="flex flex-col w-full x">
+		<div className="flex flex-col w-full">
 			<div className="flex h-12 gap-6 px-5 desktop:px-6">
 				{TAB_LIST.map((tab) => (
 					<Tab key={tab} label={tab} count={TAB_COUNT[tab]} isSelected={curTab === tab} onSelect={() => setCurTab(tab)} />
 				))}
 			</div>
-			<div className="flex flex-col desktop:px-5 py-6 max-desktop:justify-center max-desktop:bg-bg-gray @container">{COMPONENT_MAP[curTab]}</div>
+			<div className="flex flex-col desktop:px-5 py-6 max-desktop:justify-center @container">{COMPONENT_MAP[curTab]}</div>
 		</div>
 	);
 };
@@ -49,9 +49,9 @@ const Tab = ({ label, count, isSelected, onSelect }: TabProps) => {
 		<button
 			disabled={isSelected}
 			onClick={onSelect}
-			className="flex flex-col items-center justify-center relative min-w-[67px] h-12 disabled:cursor-none desktop:title-3"
+			className="flex flex-col items-center justify-center relative min-w-[67px] h-12 disabled:cursor-none"
 		>
-			<span className={`typo-headline2 font-bold ${isSelected ? 'text-label-strong font-bold' : 'text-label-assistive'}`}>
+			<span className={`typo-headline2 desktop:typo-title3 font-bold ${isSelected ? 'text-label-strong font-bold' : 'text-label-assistive'}`}>
 				{label} {count}
 			</span>
 			{isSelected && <div className="absolute bottom-0 w-full h-0.5 bg-label-strong" />}

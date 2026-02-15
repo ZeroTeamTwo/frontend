@@ -50,19 +50,19 @@ const ProfileImg = ({ img, nickname }: ProfileImgProps) => {
 	};
 
 	return (
-		<figure className="relative w-[100px] h-[100px]">
+		<figure className="relative w-[56px] h-[56px] desktop:w-[100px] desktop:h-[100px]">
 			<label htmlFor="file-upload" className="w-full h-full block cursor-pointer">
 				{/* eslint-disable-next-line @next/next/no-img-element */}
 				<img
 					src={preview}
 					alt="프로필 이미지"
-					className="w-[100px] h-[100px] rounded-full object-cover object-center border-1 border-line-normal"
+					className="w-[56px] h-[56px] desktop:w-[100px] desktop:h-[100px] rounded-full object-cover object-center border-1 border-line-normal"
 					draggable={false}
 					sizes="100vw"
 					loading="eager"
 				/>
 
-				<div className="absolute bottom-1 right-1 w-6 h-6 bg-white rounded-full border border-line-normal flex items-center justify-center shadow-sm">
+				<div className="absolute bottom-1 right-1 w-[22px] h-[22px] desktop:w-6 desktop:h-6 bg-white rounded-full border border-line-normal flex items-center justify-center shadow-sm">
 					<EditIcon />
 				</div>
 			</label>

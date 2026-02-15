@@ -14,7 +14,7 @@ export default async function Home() {
 		<>
 			<Survey />
 			<Banner />
-			<div className="w-full flex flex-col flex-1 gap-16 desktop:gap-12 items-center px-9 py-12 bg-bg-gray ">
+			<div className="w-full flex flex-col flex-1 gap-16 desktop:gap-12 items-center px-9 py-12 bg-bg-normal-alternative ">
 				<AlertLogout />
 				<RecommendBills />
 				<Content data={poppularBills} link={link}>

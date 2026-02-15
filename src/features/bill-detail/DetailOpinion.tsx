@@ -73,7 +73,7 @@ const EmojiBtn = ({ label, emoji, text, count, total, profileImg, userReaction, 
 		<div
 			key={label}
 			onClick={clickFn}
-			className={'relative h-[48px] flex overflow-hidden items-center typo-body1 font-bold text-label-normal rounded-[12px] cursor-pointer'}
+			className={`relative h-[48px] flex overflow-hidden items-center typo-body1 font-bold text-label-normal rounded-[12px] cursor-pointer ring-2 ring-transparent ring-inset hover:ring-primary-main-normal hover:bg-[var(--color-violet-99)]`}
 		>
 			{userReaction && (
 				<>
