@@ -97,7 +97,7 @@ const IssueCard = ({
 	};
 
 	return (
-		<article className="flex flex-col rounded-[12px] px-5 pt-5 pb-3 gap-2.5 bg-bg-white desktop:gap-3 desktop:pl-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ">
+		<article className="flex flex-col rounded-[12px] px-5 pt-5 pb-3 gap-2.5 bg-bg-normal-normal desktop:gap-3 desktop:pl-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
 			<Link href={CLIENT_NAVI_PATH.billDetail.getPath(billId)}>
 				<header className="flex justify-between gap-2 h-21">
 					<div className="flex flex-1 flex-col gap-1.5">
@@ -105,16 +105,16 @@ const IssueCard = ({
 							{aiTitle}
 						</h3>
 						<div className="flex gap-2.5 typo-label2 desktop:typo-label1-normal text-label-alternative font-regular">
-							<div>{modifyRepresentativeName(representativeName)}</div>
-							<div>{proposeDate}</div>
+							<div className="line-clamp-1">{modifyRepresentativeName(representativeName)}</div>
+							<div className="shrink-0">{proposeDate}</div>
 						</div>
 					</div>
-					<div className="flex items-center justify-center w-[52px] h-[52px] rounded-full bg-bg-gray text-2xl desktop:text-[32px]">
+					<div className="flex items-center justify-center w-[52px] h-[52px] rounded-full bg-bg-normal-alternative text-2xl desktop:text-[32px]">
 						{COMMITTEES[getValidCommitteeName(committeeName)].emoji}
 					</div>
 				</header>
 			</Link>
-			<section className="flex gap-2">
+			<section className="flex flex-wrap gap-2">
 				<TagLabel type="status" text={billHistoryStatus}></TagLabel>
 				<TagLabel type="committee" text={getValidCommitteeName(committeeName)}></TagLabel>
 			</section>

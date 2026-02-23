@@ -15,7 +15,7 @@ const DetailTitle = ({
 			<header className="flex flex-col w-full gap-6">
 				<h1 className="typo-title2 font-bold text-label-normal desktop:typo-title1">{billAiTitle}</h1>
 				<div className="flex items-center gap-3">
-					<div className="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-bg-gray text-[24px] desktop:w-[52px] desktop:h-[52px] desktop:text-[32px]">
+					<div className="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-bg-normal-alternative border border-line-normal-alternative text-[24px] desktop:w-[52px] desktop:h-[52px] desktop:text-[32px]">
 						{COMMITTEES[committeeName]?.emoji ?? COMMITTEES['기타'].emoji}
 					</div>
 					<div className="flex flex-col flex-1 font-regular text-label-alternative">

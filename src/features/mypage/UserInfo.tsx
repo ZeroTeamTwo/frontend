@@ -6,7 +6,7 @@ import ProfileImg from './ProfileImg';
 const UserInfo = ({ nickname, profileImageUrl, interests }: MyProfileInfo) => {
 	return (
 		<>
-			<article className="flex flex-col w-full gap-5 items-center">
+			<article className="flex flex-col w-full gap-3 desktop:gap-5 items-center">
 				<ProfileImg nickname={nickname} img={profileImageUrl} />
 				<h1 className="typo-heading1 font-bold">{nickname}</h1>
 
