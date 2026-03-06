@@ -19,22 +19,40 @@ const QuestionContent = () => {
 			</div>
 
 			<div className="relative z-10">
-				<QuestionCard
-					questionNum={currentQuestion.id}
-					questionText={currentQuestion.text}
-					prevBtn={!isFirst ? <NavBtn direction="prev" disabled={false} onClick={prev} inline /> : <div className="size-[48px]" />}
-					nextBtn={!isLast ? <NavBtn direction="next" disabled={!hasCurrentAnswer} onClick={next} inline /> : <div className="size-[48px]" />}
-				/>
+				<QuestionCard questionNum={currentQuestion.id} questionText={currentQuestion.text} />
 			</div>
 
 			<div className="relative z-10 w-full flex justify-center px-1">
 				<LikertScale selectedValue={currentAnswer} onSelect={select} />
 			</div>
 
-			{isLast && (
-				<div className="absolute inset-x-0 bottom-0 z-10 flex justify-center px-8 py-14">
+			{/* 모바일 하단 네비 영역: 항상 좌우 정렬, 마지막엔 우측에 결과확인 버튼 */}
+			<div className="desktop:hidden absolute inset-x-0 bottom-0 z-10 flex items-center justify-between gap-5 px-5 pb-10">
+				{!isFirst ? <NavBtn direction="prev" disabled={false} onClick={prev} inline /> : <div className="size-[48px]" />}
+				{isLast ? (
 					<SolidBtn
 						label="결과확인하기"
+						size="large"
+						disabled={!hasCurrentAnswer}
+						onClick={submit}
+						className="flex-1 bg-primary-sub-normal text-label-normal typo-headline1 font-[600]"
+					/>
+				) : (
+					<NavBtn direction="next" disabled={!hasCurrentAnswer} onClick={next} inline />
+				)}
+			</div>
+
+			{/* 데스크탑 사이드 네비 */}
+			<div className="hidden desktop:block">
+				{!isFirst && <NavBtn direction="prev" disabled={false} onClick={prev} />}
+				{!isLast && <NavBtn direction="next" disabled={!hasCurrentAnswer} onClick={next} />}
+			</div>
+
+			{/* 데스크탑 마지막 페이지 제출 - 좌 버튼 없이 단독이므로 가운데 정렬 */}
+			{isLast && (
+				<div className="hidden desktop:flex absolute inset-x-0 bottom-0 z-10 justify-center px-8 py-14">
+					<SolidBtn
+						label="결과 확인하기"
 						size="large"
 						disabled={!hasCurrentAnswer}
 						onClick={submit}
@@ -42,11 +60,6 @@ const QuestionContent = () => {
 					/>
 				</div>
 			)}
-
-			<div className="hidden desktop:block">
-				{!isFirst && <NavBtn direction="prev" disabled={false} onClick={prev} />}
-				{!isLast && <NavBtn direction="next" disabled={!hasCurrentAnswer} onClick={next} />}
-			</div>
 		</div>
 	);
 };
