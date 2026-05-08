@@ -25,7 +25,7 @@ export const Dropdown = ({ label, about, children, className }: DropdownProps) =
 	return (
 		<div role="listbox" className="relative inline-block">
 			<button
-				className="flex items-center h-10 px-[11px] gap-1 border border-line-normal-neutral rounded-[10px] typo-body2-normal cursor-pointer"
+				className="flex items-center h-10 px-[11px] gap-1 border border-line-normal-neutral rounded-[10px] typo-body2-normal text-label-alternative bg-bg-elevated-normal cursor-pointer"
 				onClick={(e) => {
 					e.stopPropagation();
 					toggle();

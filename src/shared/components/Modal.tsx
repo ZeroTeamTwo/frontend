@@ -19,7 +19,7 @@ const Modal = ({ children, className = '' }: ModalProps) => {
 		className,
 	);
 	return (
-		<div onClick={onCloseModal} className="fixed inset-0 z-50 flex items-center justify-center bg-black/52">
+		<div onClick={onCloseModal} className="fixed inset-0 z-50 flex items-center justify-center bg-material-dimmer">
 			<aside onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" className={mergedClassName}>
 				<button className="absolute top-5 right-6 cursor-pointer" onClick={onCloseModal}>
 					<Image src="/svgs/close.svg" alt="닫기" width={24} height={24} draggable={false} />

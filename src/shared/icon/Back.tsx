@@ -4,7 +4,7 @@ interface BackIconProps {
 	height?: number | string;
 }
 
-const BackIcon = ({ className = 'text-[#37383C]/61', width = 14, height = 14 }: BackIconProps) => {
+const BackIcon = ({ className = 'text-label-alternative', width = 14, height = 14 }: BackIconProps) => {
 	return (
 		<svg className={className} width={width} height={height} viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<path
