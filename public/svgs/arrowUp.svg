@@ -1,0 +1,14 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<foreignObject x="-64" y="-64" width="168" height="168"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(32px);clip-path:url(#bgblur_1_4084_77340_clip_path);height:100%;width:100%"></div></foreignObject><g data-figma-bg-blur-radius="64">
+<g clip-path="url(#clip0_4084_77340)">
+<rect width="39.9999" height="40" fill="#70737C" fill-opacity="0.08"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M20.5297 12.3857C20.2368 12.0928 19.7619 12.0928 19.469 12.3857L13.6357 18.219C13.3428 18.5119 13.3428 18.9868 13.6357 19.2797C13.9286 19.5726 14.4034 19.5726 14.6963 19.2797L19.2493 14.7267V27.0827C19.2493 27.4969 19.5851 27.8327 19.9993 27.8327C20.4135 27.8327 20.7493 27.4969 20.7493 27.0827V14.7267L25.3023 19.2797C25.5952 19.5726 26.0701 19.5726 26.363 19.2797C26.6559 18.9868 26.6559 18.5119 26.363 18.219L20.5297 12.3857Z" fill="#292A2D" fill-opacity="0.88"/>
+</g>
+</g>
+<defs>
+<clipPath id="bgblur_1_4084_77340_clip_path" transform="translate(64 64)"><rect width="40" height="40" rx="10"/>
+</clipPath><clipPath id="clip0_4084_77340">
+<rect width="40" height="40" rx="10" fill="white"/>
+</clipPath>
+</defs>
+</svg>
