@@ -6,6 +6,9 @@ export const CLIENT_NAVI_PATH = {
 		name: '법안 상세',
 		getPath: (id: string | number) => `/bill/${id}`,
 	},
+	balance: { name: '밸런스 카드', path: '/balance' },
+	balanceResponse: { name: '밸런스 카드 응답', path: '/balance/response' },
+	balanceDetail: { name: '밸런스 카드 상세', getPath: (id: string | number) => `/balance/${id}` },
 	person: { name: '정치인 피드', path: '/person' },
 	mypage: { name: '마이페이지', path: '/mypage' },
 	myprofile: { name: '프로필 수정', path: '/mypage/profile' },
@@ -27,7 +30,7 @@ export const MODAL_PATH = {
 	reportComment: '/modal-report-comment',
 };
 
-const NAVIBAR_VALUES = ['home', 'bill'] as const;
+const NAVIBAR_VALUES = ['home', 'bill', 'balance'] as const;
 export const DEPLOY_URL = 'https://graypick.co.kr';
 
 export const NAVIBAR_PATH = NAVIBAR_VALUES.map((key) => CLIENT_NAVI_PATH[key]);
