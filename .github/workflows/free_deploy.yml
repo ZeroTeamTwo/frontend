@@ -19,8 +19,8 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.FREE_DEPLOY }}
         with:
           source-directory: 'output'
-          destination-github-username: suhong99
-          destination-repository-name: build_orga
+          destination-github-username: mangjung
+          destination-repository-name: graypick
           user-email: ${{ secrets.FREE_ACCOUNT }}
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
